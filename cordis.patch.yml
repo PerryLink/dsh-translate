@@ -1,0 +1,36 @@
+# dsh-translate bundle patch: mount the translate/repair plugin.
+#
+# Every key below is a Config field (Schemastery schema); invalid values fail
+# the profile load loudly. See README.md "Configuration" for the full table.
+- insert:
+    - id: dsh-translate
+      name: dsh-translate
+      config:
+        # Master switch: false registers nothing at all.
+        enabled: true
+        repair:
+          # The post-execute repair layer switch.
+          enabled: true
+          # Extra tool names whose JSON-text results may be repaired on top of
+          # tools with string-rooted or json-rooted output schemas.
+          toolNames: []
+          # One switch per deterministic strategy.
+          strategies:
+            # Escape raw control characters inside strings.
+            escapeRepair: true
+            # Remove commas directly before a closing bracket.
+            trailingComma: true
+            # Close an unclosed string or container cut off by truncation.
+            truncationClosure: true
+            # Complete missing required fields with explicit null placeholders.
+            fieldCompletion: true
+          # Strategy application budget (repair-loop passes, 1..64).
+          maxSteps: 8
+        # Cap on one logged diff fragment, in characters.
+        diffMaxChars: 200
+        # Cap on logged diff entries.
+        diffMaxEntries: 50
+        # Register the /translate command.
+        registerCommand: true
+        # Register the fix_json tool.
+        registerTool: true
