@@ -1,0 +1,34 @@
+name: Feature request
+description: Suggest an enhancement for dsh-translate
+title: '[Feature]: '
+labels: ['enhancement']
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problem to solve
+      description: What pain point or missing capability does this address?
+      placeholder: 'Today I cannot ... because ...'
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+      description: What the new behavior should look like (tool surface, config key, or workflow).
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternatives considered (optional)
+      description: Workarounds or alternative designs you have tried or thought about.
+    validations:
+      required: false
+  - type: textarea
+    id: context
+    attributes:
+      label: Additional context (optional)
+      description: Anything else that helps — related plugins, schemas, references.
+    validations:
+      required: false
