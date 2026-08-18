@@ -35,6 +35,12 @@ jobs:
       - name: Test
         run: pnpm test
 
+      - name: Coverage
+        run: pnpm run coverage
+
+      - name: Lint
+        run: pnpm run lint
+
       - name: Verify self-contained dependency specs
         run: pnpm run verify:self-contained
 
