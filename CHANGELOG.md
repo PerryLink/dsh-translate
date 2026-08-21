@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.1] - 2026-08-21
+
+### Changed
+
+- Upgrade the `@deepseek-ai/dsh-*` peer and dev dependencies to `0.1.0-rc.8` (peer range `>=0.1.0-rc.8 <0.2.0`); the seams verified against the rc.6 peers (two-argument `session.append`, `{kind: 'accept', value}` post-execute decision, `CommandResult` `{kind, text}`) are unchanged in rc.8.
+- Declare compatibility with DeepSeek Harness `0.1.0-rc.8` in the READMEs and the package metadata.
+
 ## [0.1.0] - 2026-08-16
 
 ### Added

@@ -24,7 +24,7 @@
 
 | Superficie | Estado |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.6` (compatibilidad declarada para `0.1.0-rc.5`–`0.1.0-rc.6`) |
+| Harness | DeepSeek Harness `0.1.0-rc.8` |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Forma | Plugin JS de host puro (sin mitad de navegador) |
 | Modelo | Cualquier modelo — la reparación es determinista, sin llamadas extra al modelo |
@@ -142,7 +142,7 @@ Ejemplo de sobrescritura en el parche de tu perfil:
 
 ```sh
 pnpm install        # node ^22.19 || >=24
-pnpm test           # node --test: 57 tests (suites puras + suite de ensamblaje con servicios reales)
+pnpm test           # node --test: 70 tests (suites puras + suite de ensamblaje con servicios reales)
 pnpm run check      # tsc checkJs contra types.d.ts
 pnpm run verify:self-contained  # las especificaciones de dependencias resuelven desde el registry
 pnpm run verify:artifacts       # la cara ESM importa bajo Node plano + exports de lib presentes

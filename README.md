@@ -24,7 +24,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.6` (compat declared for `0.1.0-rc.5`–`0.1.0-rc.6`) |
+| Harness | DeepSeek Harness `0.1.0-rc.8` |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Form | Pure-host JS plugin (no browser half) |
 | Model | Any model — repair is deterministic, no extra model calls |
@@ -142,7 +142,7 @@ Example override in your profile patch:
 
 ```sh
 pnpm install        # node ^22.19 || >=24
-pnpm test           # node --test: 57 tests (pure lib suites + real-service assembly suite)
+pnpm test           # node --test: 70 tests (pure lib suites + real-service assembly suite)
 pnpm run check      # tsc checkJs against types.d.ts
 pnpm run verify:self-contained  # dependency specs resolve from the registry
 pnpm run verify:artifacts       # ESM face imports under plain Node + lib exports present
