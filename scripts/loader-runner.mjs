@@ -77,7 +77,8 @@ try {
   }
 
   // Real behavior: the /translate command through the real commands service.
-  const execution = await ctx.commands.execute(agent, '/translate vendors', new AbortController().signal)
+  // rc.8 execute signature: (agent, line, images, signal).
+  const execution = await ctx.commands.execute(agent, '/translate vendors', [], new AbortController().signal)
   const text = execution?.result?.text ?? ''
   if (!text.includes('openai')) {
     throw new Error(`Loader composition: /translate vendors returned ${JSON.stringify(execution?.result)}`)
