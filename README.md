@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🔁 dsh-translate
+[![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-translate)
 
 **Vendor parameter translation and deterministic JSON repair for DeepSeek Harness.**
 
