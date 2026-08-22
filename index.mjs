@@ -158,8 +158,8 @@ export const FIX_EVENT = 'translate/fix'
 
 /**
  * Append one repair audit event; a failed append never changes the tool
- * outcome. Two-argument form: the pinned 0.1.0-rc.8 peers have no append
- * envelope, and the two-argument call typechecks against rc.8 and newer.
+ * outcome. Two-argument form: the pinned 0.1.1-rc.2 peers have no append
+ * envelope, and the two-argument call typechecks against rc.2 and newer.
  * @param {import('@deepseek-ai/dsh-tools').ToolRunContext} exec - the calling execution.
  * @param {{ tool: string, callId: string, outcome: 'repaired' | 'unrepairable' | 'skipped' | 'valid', strategies: string[], entries: number, truncated: boolean, errorCode?: string, maxFragmentChars?: number }} event - the sanitized audit payload (counts and flags only).
  */

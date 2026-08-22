@@ -24,7 +24,7 @@
 
 | 方面 | 状态 |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.8` |
+| Harness | DeepSeek Harness `0.1.1-rc.2` |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | 形态 | 纯 host JS 插件（无浏览器半） |
 | 模型 | 任意模型 —— 修复完全确定性，不增加模型调用 |

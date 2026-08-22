@@ -24,7 +24,7 @@
 
 | Superfície | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.0-rc.8` |
+| Harness | DeepSeek Harness `0.1.1-rc.2` |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Forma | Plugin JS de host puro (sem metade de navegador) |
 | Modelo | Qualquer modelo — o reparo é determinista, sem chamadas extras ao modelo |

@@ -77,7 +77,7 @@ try {
   }
 
   // Real behavior: the /translate command through the real commands service.
-  // rc.8 execute signature: (agent, line, images, signal).
+  // execute signature: (agent, line, images, signal).
   const execution = await ctx.commands.execute(agent, '/translate vendors', [], new AbortController().signal)
   const text = execution?.result?.text ?? ''
   if (!text.includes('openai')) {
