@@ -27,6 +27,7 @@ import {
   describeVendor,
   vendorIds,
   paramList,
+  loadRosettaData,
   translate as translateRows,
 } from './lib/rosetta.mjs'
 import {
@@ -85,6 +86,12 @@ export const Config = z.object({
   registerCommand: z.boolean().default(true),
   /** Register the `fix_json` tool. */
   registerTool: z.boolean().default(true),
+  /**
+   * Optional path to an external rosetta data file (same shape as the bundled
+   * `lib/rosetta-data.json`). When set, it replaces the built-in mapping table
+   * at mount; an invalid file fails the mount loudly.
+   */
+  rosettaDataPath: z.string(),
 })
 
 /**
@@ -92,7 +99,7 @@ export const Config = z.object({
  * bound so programmatic mounts that bypass the Schemastery loader still fail
  * loud instead of running with hidden defaults.
  * @param {object | undefined} raw - raw loader config.
- * @returns {{ enabled: boolean, repair: { enabled: boolean, toolNames: readonly string[], strategies: { escapeRepair: boolean, trailingComma: boolean, truncationClosure: boolean, fieldCompletion: boolean }, maxSteps: number }, diffMaxChars: number, diffMaxEntries: number, registerCommand: boolean, registerTool: boolean }} the frozen resolved config.
+ * @returns {{ enabled: boolean, repair: { enabled: boolean, toolNames: readonly string[], strategies: { escapeRepair: boolean, trailingComma: boolean, truncationClosure: boolean, fieldCompletion: boolean }, maxSteps: number }, diffMaxChars: number, diffMaxEntries: number, registerCommand: boolean, registerTool: boolean, rosettaDataPath: string | undefined }} the frozen resolved config.
  */
 export function resolveConfig(raw) {
   const config = /** @type {Record<string, any>} */ (raw ?? {})
@@ -138,6 +145,11 @@ export function resolveConfig(raw) {
   const registerTool = config.registerTool ?? true
   if (typeof registerTool !== 'boolean') throw new TypeError('dsh-translate: config.registerTool must be a boolean')
 
+  const rosettaDataPath = config.rosettaDataPath
+  if (rosettaDataPath !== undefined && (typeof rosettaDataPath !== 'string' || rosettaDataPath.trim().length === 0)) {
+    throw new TypeError('dsh-translate: config.rosettaDataPath must be a non-empty string')
+  }
+
   return Object.freeze({
     enabled,
     repair: Object.freeze({
@@ -150,6 +162,7 @@ export function resolveConfig(raw) {
     diffMaxEntries,
     registerCommand,
     registerTool,
+    rosettaDataPath: rosettaDataPath === undefined ? undefined : rosettaDataPath,
   })
 }
 
@@ -494,6 +507,18 @@ export function apply(ctx, config) {
   const resolved = resolveConfig(config)
   if (!resolved.enabled) return
   const logger = ctx.logger(name)
+
+  // External rosetta data override: loads and validates at mount so a bad file
+  // fails loud before any command can serve a wrong mapping. The bundled table
+  // stays the default when no path is configured.
+  if (resolved.rosettaDataPath !== undefined) {
+    try {
+      const snapshot = loadRosettaData(resolved.rosettaDataPath)
+      logger.info(`rosetta data overridden from ${resolved.rosettaDataPath} (${snapshot.vendors.length} vendors, ${snapshot.params.length} params)`)
+    } catch (error) {
+      throw new Error(`dsh-translate: failed to load rosetta data from ${resolved.rosettaDataPath}: ${error instanceof Error ? error.message : String(error)}`)
+    }
+  }
 
   if (resolved.registerCommand) {
     ctx.effect(() => ctx.commands.register({

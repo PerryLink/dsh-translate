@@ -1,0 +1,57 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "$id": "https://github.com/PerryLink/dsh-translate/rosetta-data.schema.json",
+  "title": "dsh-translate rosetta vendor-parameter mapping data",
+  "description": "Data document for the vendor parameter translation table: vendors, canonical parameters, and the per-parameter/per-vendor cells. The bundled lib/rosetta-data.json matches this schema; external overrides (config.rosettaDataPath) must too.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["version", "vendors", "params", "table"],
+  "properties": {
+    "version": { "type": "integer", "const": 1 },
+    "vendors": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": ["id", "name", "apiStyle", "source"],
+        "properties": {
+          "id": { "type": "string", "minLength": 1 },
+          "name": { "type": "string", "minLength": 1 },
+          "apiStyle": { "type": "string", "minLength": 1 },
+          "source": { "type": "string", "enum": ["ported", "extended"] }
+        }
+      }
+    },
+    "params": {
+      "type": "array",
+      "minItems": 1,
+      "items": { "type": "string", "minLength": 1 }
+    },
+    "table": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": {
+          "type": "object",
+          "required": ["supported"],
+          "properties": {
+            "name": { "type": ["string", "null"] },
+            "supported": { "type": "boolean" },
+            "transform": {
+              "type": "object",
+              "properties": {
+                "kind": { "type": "string" },
+                "min": { "type": "number" },
+                "max": { "type": "number" }
+              },
+              "required": ["kind"]
+            },
+            "notes": { "type": "string" },
+            "source": { "type": "string", "enum": ["ported", "extended"] }
+          }
+        }
+      }
+    }
+  }
+}

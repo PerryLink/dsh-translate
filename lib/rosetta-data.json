@@ -1,0 +1,889 @@
+{
+  "version": 1,
+  "vendors": [
+    {
+      "id": "openai",
+      "name": "OpenAI",
+      "apiStyle": "openai",
+      "source": "ported"
+    },
+    {
+      "id": "ernie",
+      "name": "Baidu ERNIE (Wenxin)",
+      "apiStyle": "native",
+      "source": "ported"
+    },
+    {
+      "id": "qwen",
+      "name": "Alibaba Qwen (DashScope)",
+      "apiStyle": "native",
+      "source": "ported"
+    },
+    {
+      "id": "anthropic",
+      "name": "Anthropic Claude",
+      "apiStyle": "anthropic",
+      "source": "extended"
+    },
+    {
+      "id": "google",
+      "name": "Google Gemini",
+      "apiStyle": "gemini",
+      "source": "extended"
+    },
+    {
+      "id": "deepseek",
+      "name": "DeepSeek",
+      "apiStyle": "openai",
+      "source": "extended"
+    },
+    {
+      "id": "mistral",
+      "name": "Mistral AI",
+      "apiStyle": "openai",
+      "source": "extended"
+    },
+    {
+      "id": "cohere",
+      "name": "Cohere",
+      "apiStyle": "native",
+      "source": "extended"
+    },
+    {
+      "id": "xai",
+      "name": "xAI Grok",
+      "apiStyle": "openai",
+      "source": "extended"
+    },
+    {
+      "id": "groq",
+      "name": "Groq",
+      "apiStyle": "openai",
+      "source": "extended"
+    },
+    {
+      "id": "azure",
+      "name": "Azure OpenAI",
+      "apiStyle": "openai",
+      "source": "extended"
+    }
+  ],
+  "params": [
+    "model",
+    "messages",
+    "system",
+    "temperature",
+    "top_p",
+    "max_tokens",
+    "stream",
+    "stop",
+    "n",
+    "presence_penalty",
+    "frequency_penalty",
+    "top_k",
+    "seed"
+  ],
+  "table": {
+    "model": {
+      "openai": {
+        "name": "model",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": "model",
+        "supported": true,
+        "source": "ported"
+      },
+      "qwen": {
+        "name": "model",
+        "supported": true,
+        "source": "ported"
+      },
+      "anthropic": {
+        "name": "model",
+        "supported": true,
+        "source": "extended"
+      },
+      "google": {
+        "name": "model",
+        "supported": true,
+        "source": "extended"
+      },
+      "deepseek": {
+        "name": "model",
+        "supported": true,
+        "source": "extended"
+      },
+      "mistral": {
+        "name": "model",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "model",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "model",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "model",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "model",
+        "supported": true,
+        "source": "extended",
+        "notes": "deployment name; the full model id lives in the request URL"
+      }
+    },
+    "messages": {
+      "openai": {
+        "name": "messages",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": "messages",
+        "supported": true,
+        "source": "ported"
+      },
+      "qwen": {
+        "name": "messages",
+        "supported": true,
+        "source": "ported"
+      },
+      "anthropic": {
+        "name": "messages",
+        "supported": true,
+        "source": "extended"
+      },
+      "google": {
+        "name": "contents",
+        "supported": true,
+        "source": "extended",
+        "notes": "role system maps to systemInstruction instead"
+      },
+      "deepseek": {
+        "name": "messages",
+        "supported": true,
+        "source": "extended"
+      },
+      "mistral": {
+        "name": "messages",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "messages",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "messages",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "messages",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "messages",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "system": {
+      "openai": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\""
+      },
+      "ernie": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\""
+      },
+      "qwen": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\""
+      },
+      "anthropic": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "top-level field (string or blocks), not a message"
+      },
+      "google": {
+        "name": "systemInstruction",
+        "supported": true,
+        "source": "extended",
+        "notes": "top-level field; `system_instruction` is also accepted"
+      },
+      "deepseek": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\""
+      },
+      "mistral": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\""
+      },
+      "cohere": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\" (chat v2)"
+      },
+      "xai": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\""
+      },
+      "groq": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\""
+      },
+      "azure": {
+        "name": "system",
+        "supported": true,
+        "source": "extended",
+        "notes": "sent as a message with role \"system\""
+      }
+    },
+    "temperature": {
+      "openai": {
+        "name": "temperature",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": "temperature",
+        "supported": true,
+        "source": "ported",
+        "transform": {
+          "kind": "clamp",
+          "min": 0.01,
+          "max": 1
+        }
+      },
+      "qwen": {
+        "name": "temperature",
+        "supported": true,
+        "source": "ported"
+      },
+      "anthropic": {
+        "name": "temperature",
+        "supported": true,
+        "source": "extended",
+        "notes": "range 0..1"
+      },
+      "google": {
+        "name": "generationConfig.temperature",
+        "supported": true,
+        "source": "extended",
+        "notes": "range 0..2"
+      },
+      "deepseek": {
+        "name": "temperature",
+        "supported": true,
+        "source": "extended",
+        "notes": "range 0..2"
+      },
+      "mistral": {
+        "name": "temperature",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "temperature",
+        "supported": true,
+        "source": "extended",
+        "notes": "range 0..5"
+      },
+      "xai": {
+        "name": "temperature",
+        "supported": true,
+        "source": "extended",
+        "notes": "range 0..2"
+      },
+      "groq": {
+        "name": "temperature",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "temperature",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "top_p": {
+      "openai": {
+        "name": "top_p",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": "top_p",
+        "supported": true,
+        "source": "ported",
+        "transform": {
+          "kind": "clamp",
+          "min": 0,
+          "max": 1
+        }
+      },
+      "qwen": {
+        "name": "top_p",
+        "supported": true,
+        "source": "ported"
+      },
+      "anthropic": {
+        "name": "top_p",
+        "supported": true,
+        "source": "extended",
+        "notes": "use with top_k instead of temperature"
+      },
+      "google": {
+        "name": "generationConfig.topP",
+        "supported": true,
+        "source": "extended",
+        "notes": "range 0..1"
+      },
+      "deepseek": {
+        "name": "top_p",
+        "supported": true,
+        "source": "extended",
+        "notes": "recommended to use together with temperature"
+      },
+      "mistral": {
+        "name": "top_p",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "p",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "top_p",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "top_p",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "top_p",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "max_tokens": {
+      "openai": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "ported",
+        "notes": "newer reasoning models prefer max_completion_tokens"
+      },
+      "ernie": {
+        "name": "max_output_tokens",
+        "supported": true,
+        "source": "ported"
+      },
+      "qwen": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "ported"
+      },
+      "anthropic": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "extended",
+        "notes": "REQUIRED for most Anthropic models"
+      },
+      "google": {
+        "name": "generationConfig.maxOutputTokens",
+        "supported": true,
+        "source": "extended"
+      },
+      "deepseek": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "extended"
+      },
+      "mistral": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "extended",
+        "notes": "max_completion_tokens is also accepted"
+      },
+      "azure": {
+        "name": "max_tokens",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "stream": {
+      "openai": {
+        "name": "stream",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": "stream",
+        "supported": true,
+        "source": "ported"
+      },
+      "qwen": {
+        "name": "stream",
+        "supported": true,
+        "source": "ported"
+      },
+      "anthropic": {
+        "name": "stream",
+        "supported": true,
+        "source": "extended"
+      },
+      "google": {
+        "name": "stream",
+        "supported": true,
+        "source": "extended",
+        "notes": "API option (generateContent vs streamGenerateContent), not a body field"
+      },
+      "deepseek": {
+        "name": "stream",
+        "supported": true,
+        "source": "extended"
+      },
+      "mistral": {
+        "name": "stream",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "stream",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "stream",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "stream",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "stream",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "stop": {
+      "openai": {
+        "name": "stop",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": null,
+        "supported": false,
+        "source": "ported",
+        "notes": "no equivalent; the upstream table marks it unsupported"
+      },
+      "qwen": {
+        "name": null,
+        "supported": false,
+        "source": "ported",
+        "notes": "no equivalent; the upstream table marks it unsupported"
+      },
+      "anthropic": {
+        "name": "stop_sequences",
+        "supported": true,
+        "source": "extended"
+      },
+      "google": {
+        "name": "generationConfig.stopSequences",
+        "supported": true,
+        "source": "extended"
+      },
+      "deepseek": {
+        "name": "stop",
+        "supported": true,
+        "source": "extended"
+      },
+      "mistral": {
+        "name": "stop",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "stop_sequences",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "stop",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "stop",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "stop",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "n": {
+      "openai": {
+        "name": "n",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": null,
+        "supported": false,
+        "source": "ported",
+        "notes": "no equivalent; the upstream table marks it unsupported"
+      },
+      "qwen": {
+        "name": null,
+        "supported": false,
+        "source": "ported",
+        "notes": "no equivalent; the upstream table marks it unsupported"
+      },
+      "anthropic": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "google": {
+        "name": "generationConfig.candidateCount",
+        "supported": true,
+        "source": "extended"
+      },
+      "deepseek": {
+        "name": "n",
+        "supported": true,
+        "source": "extended",
+        "notes": "single candidate for most models"
+      },
+      "mistral": {
+        "name": "n",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "n",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "n",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "azure": {
+        "name": "n",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "presence_penalty": {
+      "openai": {
+        "name": "presence_penalty",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": "penalty_score",
+        "supported": true,
+        "source": "ported"
+      },
+      "qwen": {
+        "name": "presence_penalty",
+        "supported": true,
+        "source": "ported"
+      },
+      "anthropic": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "google": {
+        "name": "generationConfig.presencePenalty",
+        "supported": true,
+        "source": "extended",
+        "notes": "v1beta models only"
+      },
+      "deepseek": {
+        "name": "presence_penalty",
+        "supported": true,
+        "source": "extended"
+      },
+      "mistral": {
+        "name": "presence_penalty",
+        "supported": true,
+        "source": "extended",
+        "notes": "model-dependent"
+      },
+      "cohere": {
+        "name": "presence_penalty",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "presence_penalty",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "presence_penalty",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "presence_penalty",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "frequency_penalty": {
+      "openai": {
+        "name": "frequency_penalty",
+        "supported": true,
+        "source": "ported"
+      },
+      "ernie": {
+        "name": null,
+        "supported": false,
+        "source": "ported",
+        "notes": "no equivalent; the upstream table marks it unsupported"
+      },
+      "qwen": {
+        "name": null,
+        "supported": false,
+        "source": "ported",
+        "notes": "no equivalent; the upstream table marks it unsupported"
+      },
+      "anthropic": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "google": {
+        "name": "generationConfig.frequencyPenalty",
+        "supported": true,
+        "source": "extended",
+        "notes": "v1beta models only"
+      },
+      "deepseek": {
+        "name": "frequency_penalty",
+        "supported": true,
+        "source": "extended"
+      },
+      "mistral": {
+        "name": "frequency_penalty",
+        "supported": true,
+        "source": "extended",
+        "notes": "model-dependent"
+      },
+      "cohere": {
+        "name": "frequency_penalty",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "frequency_penalty",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "frequency_penalty",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "frequency_penalty",
+        "supported": true,
+        "source": "extended"
+      }
+    },
+    "top_k": {
+      "openai": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "ernie": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "qwen": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "anthropic": {
+        "name": "top_k",
+        "supported": true,
+        "source": "extended"
+      },
+      "google": {
+        "name": "generationConfig.topK",
+        "supported": true,
+        "source": "extended"
+      },
+      "deepseek": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "mistral": {
+        "name": "top_k",
+        "supported": true,
+        "source": "extended",
+        "notes": "some models"
+      },
+      "cohere": {
+        "name": "k",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "groq": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "azure": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      }
+    },
+    "seed": {
+      "openai": {
+        "name": "seed",
+        "supported": true,
+        "source": "extended"
+      },
+      "ernie": {
+        "name": null,
+        "supported": false,
+        "source": "extended",
+        "notes": "no equivalent"
+      },
+      "qwen": {
+        "name": "seed",
+        "supported": true,
+        "source": "extended"
+      },
+      "anthropic": {
+        "name": "seed",
+        "supported": true,
+        "source": "extended",
+        "notes": "beta parameter"
+      },
+      "google": {
+        "name": "generationConfig.seed",
+        "supported": true,
+        "source": "extended"
+      },
+      "deepseek": {
+        "name": "seed",
+        "supported": true,
+        "source": "extended"
+      },
+      "mistral": {
+        "name": "random_seed",
+        "supported": true,
+        "source": "extended"
+      },
+      "cohere": {
+        "name": "seed",
+        "supported": true,
+        "source": "extended"
+      },
+      "xai": {
+        "name": "seed",
+        "supported": true,
+        "source": "extended"
+      },
+      "groq": {
+        "name": "seed",
+        "supported": true,
+        "source": "extended"
+      },
+      "azure": {
+        "name": "seed",
+        "supported": true,
+        "source": "extended"
+      }
+    }
+  }
+}

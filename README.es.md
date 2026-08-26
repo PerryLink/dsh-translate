@@ -88,6 +88,7 @@ Todos los ajustes son campos `Config` de Schemastery (modificables desde cordis.
 | `diffMaxEntries` | `50` | Tope de entradas de diff registradas |
 | `registerCommand` | `true` | Registrar el comando `/translate` |
 | `registerTool` | `true` | Registrar la herramienta `fix_json` |
+| `rosettaDataPath` | *(none)* | Archivo de datos rosetta externo opcional (misma forma que el `lib/rosetta-data.json` incluido); anula la tabla de mapeo integrada |
 
 Ejemplo de sobrescritura en el parche de tu perfil:
 

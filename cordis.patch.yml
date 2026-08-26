@@ -34,3 +34,7 @@
         registerCommand: true
         # Register the fix_json tool.
         registerTool: true
+        # Optional external rosetta data file (same shape as the bundled
+        # lib/rosetta-data.json). Set to override the built-in mapping table;
+        # an invalid file fails the mount loudly.
+        # rosettaDataPath: /path/to/rosetta-data.json

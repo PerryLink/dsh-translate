@@ -88,6 +88,7 @@ dsh --profile web --dump-config | grep -A2 'id: dsh-translate'
 | `diffMaxEntries` | `50` | 日志 diff 条目上限 |
 | `registerCommand` | `true` | 注册 `/translate` 命令 |
 | `registerTool` | `true` | 注册 `fix_json` 工具 |
+| `rosettaDataPath` | *(none)* | 可选的外部 rosetta 数据文件（与内置 `lib/rosetta-data.json` 同形）；覆盖内置映射表 |
 
 profile patch 中的覆盖示例：
 

@@ -89,6 +89,7 @@ All tunables are Schemastery `Config` fields (changeable from cordis.yml). An id
 | `diffMaxEntries` | `50` | Cap on logged diff entries |
 | `registerCommand` | `true` | Register the `/translate` command |
 | `registerTool` | `true` | Register the `fix_json` tool |
+| `rosettaDataPath` | *(none)* | Optional external rosetta data file (same shape as the bundled `lib/rosetta-data.json`); overrides the built-in mapping table |
 
 Example override in your profile patch:
 

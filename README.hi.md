@@ -88,6 +88,7 @@ dsh --profile web --dump-config | grep -A2 'id: dsh-translate'
 | `diffMaxEntries` | `50` | लॉग की गई diff प्रविष्टियों की सीमा |
 | `registerCommand` | `true` | `/translate` कमांड पंजीकृत करें |
 | `registerTool` | `true` | `fix_json` टूल पंजीकृत करें |
+| `rosettaDataPath` | *(none)* | वैकल्पिक बाहरी rosetta डेटा फ़ाइल (बंडल किए गए `lib/rosetta-data.json` जैसा आकार); अंतर्निहित मैपिंग तालिका को ओवरराइड करती है |
 
 आपके प्रोफ़ाइल पैच में ओवरराइड उदाहरण:
 
