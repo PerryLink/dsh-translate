@@ -1,6 +1,7 @@
 <div align="center">
 
 # 🔁 dsh-translate
+- **Canal 1024 store**: `npm i -g dsh1024` uma vez, depois `dsh1024 plugin --profile web add dsh-translate` (conta para o ranking de instalações do [deepseek1024.com](https://deepseek1024.com)).
 
 **Tradução de parâmetros entre provedores e reparo determinista de JSON para o DeepSeek Harness.**
 
