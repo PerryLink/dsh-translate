@@ -127,7 +127,7 @@ profile patch 中的覆盖示例：
 ## 权限与数据
 
 - **权限**：无网络、无子进程、无凭据 —— 只消费官方 `commands` 与 `tools` 服务并写会话日志。
-- **数据**：修复绝不编造数值；模型可见的增量只有修复后的规范值与 `fix_json` 的 diff。会话审计事件（`translate/fix`）只记工具名、call id、策略名、编辑条数与截断标志 —— 绝不记载荷。
+- **数据**：修复绝不编造数值；模型可见的增量只有修复后的规范值与 `fix_json` 的 diff。会话审计事件（`translate/fix`）只记工具名、call id、策略名、编辑条数与截断标志 —— 绝不记载荷。审计写入受宿主会话事件词汇表门控：认识 `translate/fix` 的宿主走两参 append；带 `ignorable` append 信封的宿主带标记写入；无信封宿主（`0.1.0-rc.6`–`0.1.1-rc.2`、`0.1.2-alpha.1`）不写审计 —— 工具结果本身仍是模型可见日志。
 
 ## 安全边界
 
@@ -141,6 +141,7 @@ profile patch 中的覆盖示例：
 - 支持的 JSON Schema 子集与 harness 工具注册表一致（`type`/`oneOf`/`properties`/`required`/`additionalProperties`/`items`/`enum`/`const`）；其他关键字按不支持拒绝，而非静默忽略。
 - 修复只作用于规范值为 JSON 文本字符串的成功结果；已因 schema 校验失败的结果按失败到达，绝不翻转。
 - 翻译表覆盖 11 家厂商 × 13 个规范参数；`extended` 行按公开 API 参考扩展（非上游三家），并在 `lib/rosetta.mjs` 中标注。
+- 在既不认识 `translate/fix`、`session.append` 又无 `ignorable` 信封的宿主上（已发布 `0.1.0-rc.6`–`0.1.1-rc.2` 线，以及读取时对未知事件类型 fail-closed 的 `0.1.2-alpha.1`），自适应门跳过审计写入，会话日志永不被污染；这些宿主在收录该事件类型前没有 in-log 审计镜像。
 
 ## 开发
 

@@ -122,7 +122,7 @@ test('translateOverview mentions the usage forms', () => {
 // Post-execute repair through the real registry
 // ---------------------------------------------------------------------------
 
-test('repairs a broken JSON string from a json-rooted tool and audits counts only', async () => {
+test('repairs a broken JSON string from a json-rooted tool; the adaptive gate skips the audit on envelope-less hosts', async () => {
   const harness = await mountHarness()
   await harness.ctx.plugin({
     name: 'emit-json-fixture',
@@ -147,10 +147,10 @@ test('repairs a broken JSON string from a json-rooted tool and audits counts onl
   const result = await callTool(harness, 'emit-json', {})
   assert.equal(result.isError, false)
   assert.deepEqual(result.value, { a: 1 })
-  const audit = harness.session.events.filter(event => event.type === 'translate/fix').at(-1)
-  assert.equal(audit?.data.outcome, 'repaired')
-  assert.ok(audit.data.strategies.includes('trailingComma'))
-  assert.ok(!JSON.stringify(audit.data).includes('"a"'))
+  // rc.2-shaped host: the `translate/fix` type is outside its known set and
+  // its append has no `ignorable` envelope → the adaptive gate skips the
+  // audit append (the gate itself is unit-tested in audit.test.mjs).
+  assert.equal(harness.session.events.filter(event => event.type === 'translate/fix').length, 0)
 })
 
 test('repairs a truncated JSON string from a string-rooted tool into repaired text', async () => {

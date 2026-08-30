@@ -22,6 +22,7 @@
  */
 
 import z from '@deepseek-ai/schemastery'
+import { KNOWN_SESSION_EVENT_TYPES } from '@deepseek-ai/dsh-session'
 import { defineTool } from '@deepseek-ai/dsh-tools'
 import {
   describeVendor,
@@ -170,9 +171,17 @@ export function resolveConfig(raw) {
 export const FIX_EVENT = 'translate/fix'
 
 /**
- * Append one repair audit event; a failed append never changes the tool
- * outcome. Two-argument form: the pinned 0.1.1-rc.2 peers have no append
- * envelope, and the two-argument call typechecks against rc.2 and newer.
+ * Append one repair audit event when the host can carry it safely; skip
+ * silently otherwise — the tool result remains the model-visible log, so
+ * nothing model-visible is lost. A failed append never changes the tool
+ * outcome. Three host classes:
+ * - hosts whose `KNOWN_SESSION_EVENT_TYPES` covers the vocabulary append
+ *   plainly with the two-argument form;
+ * - hosts with an `ignorable` append option (pre-0.1.2 master builds) append
+ *   with the marker, so builds that do not know the type skip it on restore;
+ * - envelope-less hosts (0.1.0-rc.6/rc.8, 0.1.1-rc.2, and 0.1.2-alpha.1,
+ *   which removed the envelope and fails closed on unknown types at read)
+ *   get no append — the repair outcome still logs the model-visible content.
  * @param {import('@deepseek-ai/dsh-tools').ToolRunContext} exec - the calling execution.
  * @param {{ tool: string, callId: string, outcome: 'repaired' | 'unrepairable' | 'skipped' | 'valid', strategies: string[], entries: number, truncated: boolean, errorCode?: string, maxFragmentChars?: number }} event - the sanitized audit payload (counts and flags only).
  */
@@ -180,7 +189,16 @@ export function auditFix(exec, event) {
   const session = exec.agent?.session
   if (session === undefined) return
   try {
-    session.append(FIX_EVENT, event)
+    if (KNOWN_SESSION_EVENT_TYPES.has(FIX_EVENT)) {
+      session.append(FIX_EVENT, event)
+      return
+    }
+    // Envelope-less hosts take no options; the pre-0.1.2 master builds whose
+    // append accepted the `ignorable` marker keep the marked form.
+    const append = /** @type {(type: string, data: unknown, options?: { ignorable: true }) => unknown} */ (session.append)
+    if (Function.prototype.toString.call(append).includes('ignorable')) {
+      append.call(session, FIX_EVENT, event, { ignorable: true })
+    }
   } catch {
     // The tool result still logs the model-visible content; the audit append
     // is supplementary and must not flip an outcome that already ran.
