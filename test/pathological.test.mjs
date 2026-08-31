@@ -8,7 +8,7 @@
 import { test } from 'node:test'
 import assert from 'node:assert/strict'
 import { Context } from '@deepseek-ai/cordis'
-import { CallId } from '@deepseek-ai/dsh-llm'
+import { CallId } from './call-id.mjs'
 import SessionStore, { SessionId } from '@deepseek-ai/dsh-session'
 import ToolRuntime from '@deepseek-ai/dsh-tools'
 import CommandRuntime from '@deepseek-ai/dsh-commands'
