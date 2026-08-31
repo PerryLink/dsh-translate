@@ -5,6 +5,13 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Upgrade the `@deepseek-ai/dsh-*` dev dependencies to `0.1.2-alpha.2` (peer range unchanged at `>=0.1.0-rc.8 <0.2.0`) and align the `@deepseek-ai/cordis` / `@deepseek-ai/schemastery` dev dependency carets to `^4.0.2` / `^3.18.2`.
+- Derive the test-only call-id brand locally from the dsh-tools execution contract (`ToolExecution['callId']` in `test/call-id.mjs`) instead of importing `CallId` from `@deepseek-ai/dsh-llm`, whose brand was renamed `ToolCallId` on host master: the tests stay green on both the published line and the checkout.
+
 ## [0.2.1] - 2026-08-30
 
 ### Fixed
