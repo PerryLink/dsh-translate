@@ -15,3 +15,4 @@ minimumReleaseAgeExclude:
   - '@deepseek-ai/dsh-util-crypto@0.1.2-alpha.3'
   - '@deepseek-ai/dsh-util-values@0.1.2-alpha.3'
   - '@deepseek-ai/schemastery@3.18.2'
+verifyDepsBeforeRun: false
