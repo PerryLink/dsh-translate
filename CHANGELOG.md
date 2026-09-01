@@ -9,6 +9,7 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+- Upgrade the `@deepseek-ai/dsh-*` dev dependencies from `0.1.2-alpha.2` to `0.1.2-alpha.3` (peer range unchanged at `>=0.1.0-rc.8 <0.2.0`), keep the `@deepseek-ai/cordis` / `@deepseek-ai/schemastery` carets aligned at `^4.0.2` / `^3.18.2`, and refresh the compatibility workflow targets, `dshWorkshop.compatibility.dshVersions`, and the five-language README version strings to `0.1.2-alpha.3`.
 - Upgrade the `@deepseek-ai/dsh-*` dev dependencies to `0.1.2-alpha.2` (peer range unchanged at `>=0.1.0-rc.8 <0.2.0`) and align the `@deepseek-ai/cordis` / `@deepseek-ai/schemastery` dev dependency carets to `^4.0.2` / `^3.18.2`.
 - Derive the test-only call-id brand locally from the dsh-tools execution contract (`ToolExecution['callId']` in `test/call-id.mjs`) instead of importing `CallId` from `@deepseek-ai/dsh-llm`, whose brand was renamed `ToolCallId` on host master: the tests stay green on both the published line and the checkout.
 
