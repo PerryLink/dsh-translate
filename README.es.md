@@ -125,7 +125,8 @@ Ejemplo de sobrescritura en el parche de tu perfil:
 ## Permisos y datos
 
 - **Permisos**: sin red, sin subprocesos, sin credenciales — el plugin solo consume los servicios oficiales `commands` y `tools` y escribe en el registro de sesión.
-- **Datos**: la reparación nunca inventa valores; las únicas adiciones visibles para el modelo son el valor canónico reparado y el diff de `fix_json`. Los eventos de auditoría (`translate/fix`) llevan nombre de herramienta, call id, estrategias, conteos de ediciones y marcas de truncamiento — nunca payloads. La escritura de auditoría está controlada por el vocabulario de eventos de sesión del host: los hosts que conocen `translate/fix` reciben el append llano de dos argumentos, los hosts con el envoltorio `ignorable` reciben el append marcado, y los hosts sin envoltorio (`0.1.0-rc.6`–`0.1.1-rc.2`, `0.1.2-alpha.1`) no reciben auditoría — el resultado de la herramienta sigue siendo el registro visible para el modelo.
+- **Datos**: la reparación nunca inventa valores; las únicas adiciones visibles para el modelo son el valor canónico reparado y el diff de `fix_json`. Los eventos de auditoría (`translate/fix`) llevan nombre de herramienta, call id, estrategias, conteos de ediciones y marcas de truncamiento — nunca payloads. La escritura de auditoría está controlada por el vocabulario de eventos de sesión del host: los hosts que conocen `translate/fix` reciben el append llano de dos argumentos, los hosts con el envoltorio `ignorable` reciben el append marcado, y los hosts sin envoltorio (`0.1.0-rc.6`–`0.1.1-rc.2`, `0.1.2-alpha.2`) no reciben auditoría — el resultado de la herramienta sigue siendo el registro visible para el modelo.
+0.1.2-alpha.2 (adaptado el 2026-08-31): el sobre de sesión conserva su campo ignorable solo para compatibilidad de lectura de logs almacenados - Session.append aún no puede estamparlo, por lo que el comportamiento de la puerta no cambia.
 
 ## Límites de seguridad
 
@@ -139,7 +140,7 @@ Ejemplo de sobrescritura en el parche de tu perfil:
 - El subconjunto de JSON Schema soportado refleja el registro de herramientas del harness (`type`/`oneOf`/`properties`/`required`/`additionalProperties`/`items`/`enum`/`const`); otras palabras clave se rechazan como no soportadas, no se ignoran en silencio.
 - La reparación solo aplica a resultados exitosos cuyo valor canónico es un string de texto JSON; un valor que ya falló la validación llega como resultado fallido y nunca se invierte.
 - La tabla cubre 11 proveedores × 13 parámetros canónicos; las filas `extended` siguen referencias públicas de API (no el trío upstream) y están marcadas como tales en `lib/rosetta.mjs`.
-- En hosts que ni conocen `translate/fix` ni exponen el envoltorio `ignorable` en `session.append` — la línea publicada `0.1.0-rc.6`–`0.1.1-rc.2` y `0.1.2-alpha.1`, que falla cerrado ante tipos de evento desconocidos al leer — la puerta adaptativa omite el append de auditoría para que el registro de sesión nunca se contamine; el espejo de auditoría se pierde en esos hosts hasta que el tipo de evento se registre.
+- En hosts que ni conocen `translate/fix` ni exponen el envoltorio `ignorable` en `session.append` — la línea publicada `0.1.0-rc.6`–`0.1.1-rc.2` y `0.1.2-alpha.2`, que falla cerrado ante tipos de evento desconocidos al leer — la puerta adaptativa omite el append de auditoría para que el registro de sesión nunca se contamine; el espejo de auditoría se pierde en esos hosts hasta que el tipo de evento se registre.
 
 ## Desarrollo
 
