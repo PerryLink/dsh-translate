@@ -150,7 +150,7 @@ test('repairs a broken JSON string from a json-rooted tool; the adaptive gate sk
   // rc.2-shaped host: the `translate/fix` type is outside its known set and
   // its append has no `ignorable` envelope → the adaptive gate skips the
   // audit append (the gate itself is unit-tested in audit.test.mjs).
-  assert.equal(harness.session.events.filter(event => event.type === 'translate/fix').length, 0)
+  assert.equal(harness.session.snapshotEvents().filter(event => event.type === 'translate/fix').length, 0)
 })
 
 test('repairs a truncated JSON string from a string-rooted tool into repaired text', async () => {
@@ -206,7 +206,7 @@ test('leaves already-valid JSON text untouched', async () => {
   const result = await callTool(harness, 'emit-clean', {})
   assert.equal(result.isError, false)
   assert.equal(result.value, '{"ok": true}')
-  assert.equal(harness.session.events.filter(event => event.type === 'translate/fix').length, 0)
+  assert.equal(harness.session.snapshotEvents().filter(event => event.type === 'translate/fix').length, 0)
 })
 
 test('never flips a failed result into a success', async () => {
