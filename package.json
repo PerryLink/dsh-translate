@@ -1,6 +1,6 @@
 {
   "name": "dsh-translate",
-  "version": "0.2.2",
+  $10.2.3",
   "description": "Vendor parameter translation and deterministic JSON repair for DeepSeek Harness: the /translate command maps temperature/top_p/max_tokens/stop/system across 11 vendors, and the tools/post-execute repair layer (plus the fix_json tool) fixes broken JSON tool output with escape repair, trailing-comma removal, truncation closure, and required-field completion 鈥?never fabricating data",
   "repository": {
     "type": "git",
