@@ -25,7 +25,7 @@
 
 | Superfície | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.2-alpha.5` |
+| Harness | DeepSeek Harness `0.1.2-rc.1` |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Forma | Plugin JS de host puro (sem metade de navegador) |
 | Modelo | Qualquer modelo — o reparo é determinista, sem chamadas extras ao modelo |
@@ -125,8 +125,8 @@ Exemplo de sobrescrita no patch do seu perfil:
 ## Permissões e dados
 
 - **Permissões**: sem rede, sem subprocessos, sem credenciais — o plugin apenas consome os serviços oficiais `commands` e `tools` e grava no registro de sessão.
-- **Dados**: o reparo nunca inventa valores; as únicas adições visíveis ao modelo são o valor canônico reparado e o diff do `fix_json`. Os eventos de auditoria (`translate/fix`) carregam nome de ferramenta, call id, estratégias, contagens de edições e marcas de truncamento — nunca payloads. A gravação de auditoria é controlada pelo vocabulário de eventos de sessão do host: hosts que conhecem `translate/fix` recebem o append simples de dois argumentos, hosts com o envelope `ignorable` recebem o append marcado, e hosts sem envelope (`0.1.0-rc.6`–`0.1.1-rc.2`, `0.1.2-alpha.5`) não recebem auditoria — o resultado da ferramenta continua sendo o registro visível ao modelo.
-0.1.2-alpha.5 (adaptado em 2026-09-02): o envelope de sessão mantém seu campo ignorable apenas para compatibilidade de leitura de logs armazenados - o Session.append ainda não consegue estampá-lo, então o comportamento da porta não muda.
+- **Dados**: o reparo nunca inventa valores; as únicas adições visíveis ao modelo são o valor canônico reparado e o diff do `fix_json`. Os eventos de auditoria (`translate/fix`) carregam nome de ferramenta, call id, estratégias, contagens de edições e marcas de truncamento — nunca payloads. A gravação de auditoria é controlada pelo vocabulário de eventos de sessão do host: hosts que conhecem `translate/fix` recebem o append simples de dois argumentos, hosts com o envelope `ignorable` recebem o append marcado, e hosts sem envelope (`0.1.0-rc.6`–`0.1.1-rc.2`, `0.1.2-rc.1`) não recebem auditoria — o resultado da ferramenta continua sendo o registro visível ao modelo.
+0.1.2-rc.1 (adaptado em 2026-09-04): o envelope de sessão mantém seu campo ignorable apenas para compatibilidade de leitura de logs armazenados - o Session.append ainda não consegue estampá-lo, então o comportamento da porta não muda.
 
 ## Limites de segurança
 
@@ -140,7 +140,7 @@ Exemplo de sobrescrita no patch do seu perfil:
 - O subconjunto de JSON Schema suportado reflete o registro de ferramentas do harness (`type`/`oneOf`/`properties`/`required`/`additionalProperties`/`items`/`enum`/`const`); outras palavras-chave são rejeitadas como não suportadas, não ignoradas em silêncio.
 - O reparo só se aplica a resultados bem-sucedidos cujo valor canônico é um string de texto JSON; um valor que já falhou a validação chega como resultado com falha e nunca é invertido.
 - A tabela cobre 11 provedores × 13 parâmetros canônicos; as linhas `extended` seguem referências públicas de API (não o trio upstream) e estão marcadas como tal em `lib/rosetta.mjs`.
-- Em hosts que não conhecem `translate/fix` nem expõem o envelope `ignorable` em `session.append` (a linha publicada `0.1.0-rc.6`–`0.1.1-rc.2` e `0.1.2-alpha.5`, que falha fechado para tipos de evento desconhecidos na leitura), a porta adaptativa pula o append de auditoria para que o registro de sessão nunca seja poluído; o espelho de auditoria se perde nesses hosts até que o tipo de evento seja registrado.
+- Em hosts que não conhecem `translate/fix` nem expõem o envelope `ignorable` em `session.append` (a linha publicada `0.1.0-rc.6`–`0.1.1-rc.2` e `0.1.2-rc.1`, que falha fechado para tipos de evento desconhecidos na leitura), a porta adaptativa pula o append de auditoria para que o registro de sessão nunca seja poluído; o espelho de auditoria se perde nesses hosts até que o tipo de evento seja registrado.
 
 ## Desenvolvimento
 

@@ -5,6 +5,12 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.2.4] - 2026-09-04
+
+### Changed
+
+- Align the devDependency pins to the published dsh `0.1.2-rc.1` line (5 `@deepseek-ai/dsh-*` packages), the `dshWorkshop` compatibility list, the compat workflow's CLI/base/headless installs, and the release-age exclusions; the five-language READMEs record the rc.1 facts. No behavior change: the adaptive `translate/fix` audit gate behaves identically on `0.1.2-rc.1` (`Session.append` still cannot stamp the `ignorable` marker).
+
 ## [0.2.3] - 2026-09-02
 
 ### Changed
