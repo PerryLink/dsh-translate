@@ -28,7 +28,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | DeepSeek Harness `0.1.2-rc.1` |
+| Harness | Main version **`dsh-v0.1.3-alpha.1`** (GitHub tag, verified 2026-09-06: full gate chain + profile install smoke). npm dependency line pinned to `0.1.2-rc.1`; peers `>=0.1.2-rc.1 <0.2.0`. |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Form | Pure-host JS plugin (no browser half) |
 | Model | Any model — repair is deterministic, no extra model calls |
