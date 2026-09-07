@@ -47,6 +47,7 @@ export const name = 'dsh-translate'
 /** Hard services: the command surface and the tool registry. */
 export const inject = ['commands', 'tools']
 
+// Service Definition — public contract: the raw plugin Config schema (Schemastery).
 /** Raw plugin config — every field optional; {@link resolveConfig} fills defaults. */
 export const Config = z.object({
   /** Master switch; the plugin registers nothing when false. */
@@ -538,6 +539,7 @@ export function apply(ctx, config) {
     }
   }
 
+  // Service Provider — registration: the /translate command and the fix_json tool.
   if (resolved.registerCommand) {
     ctx.effect(() => ctx.commands.register({
       name: 'translate',
@@ -551,6 +553,7 @@ export function apply(ctx, config) {
     ctx.effect(() => ctx.tools.register(/** @type {any} */ (fixJsonTool(resolved))), 'dsh-translate: fix_json tool')
   }
 
+  // Consumer — the post-execute listener consumes tool results and rewrites repaired canonical values.
   if (resolved.repair.enabled) {
     ctx.on('tools/post-execute', async (/** @type {any} */ exec, /** @type {any} */ result, next) => {
       // Failures are never flipped into successes; broken JSON that already
