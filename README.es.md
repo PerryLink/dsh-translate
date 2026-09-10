@@ -26,7 +26,7 @@
 
 | Superficie | Estado |
 |---|---|
-| Harness | Versión principal **`dsh-v0.1.5-alpha.1`** (tag de GitHub, verificado el 2026-09-09: cadena completa de puertas + smoke de instalación de perfil). Línea de dependencias npm fijada en `0.1.2-rc.1`; peers `>=0.1.2-rc.1 <0.2.0 || >=0.1.5-alpha.1 <0.2.0`. |
+| Harness | Versión principal **`dsh-v0.1.5-rc.1`** (tag de GitHub, verificado el 2026-09-10: cadena completa de puertas + smoke de instalación de perfil). Línea de dependencias npm fijada en `0.1.5-rc.1`; peers `>=0.1.2-rc.1 <0.2.0 || >=0.1.5-alpha.1 <0.2.0`. |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Forma | Plugin JS de host puro (sin mitad de navegador) |
 | Modelo | Cualquier modelo — la reparación es determinista, sin llamadas extra al modelo |
