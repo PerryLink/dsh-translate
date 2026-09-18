@@ -175,7 +175,7 @@ export const FIX_EVENT = 'translate/fix'
  * Append one repair audit event when the host can carry it safely; skip
  * silently otherwise — the tool result remains the model-visible log, so
  * nothing model-visible is lost. A failed append never changes the tool
- * outcome. Three host classes:
+ * outcome. Host classes:
  * - hosts whose `KNOWN_SESSION_EVENT_TYPES` covers the vocabulary append
  *   plainly with the two-argument form;
  * - hosts with an `ignorable` append option (pre-0.1.2 master builds) append
@@ -183,6 +183,11 @@ export const FIX_EVENT = 'translate/fix'
  * - envelope-less hosts (0.1.0-rc.6/rc.8, 0.1.1-rc.2, and 0.1.2-alpha.1,
  *   which removed the envelope and fails closed on unknown types at read)
  *   get no append — the repair outcome still logs the model-visible content.
+ * - the 0.1.6-alpha.2 line: `Session.append<T>(type, data, ...opts)` takes a
+ *   third argument only for surface-eligible event types, and that argument is
+ *   a `SurfaceIntent`, never an `ignorable` envelope — a non-surface
+ *   `translate/fix` type has no third parameter at all, so the source probe
+ *   below still finds no `ignorable` handling and the result stays skip.
  * @param {import('@deepseek-ai/dsh-tools').ToolRunContext} exec - the calling execution.
  * @param {{ tool: string, callId: string, outcome: 'repaired' | 'unrepairable' | 'skipped' | 'valid', strategies: string[], entries: number, truncated: boolean, errorCode?: string, maxFragmentChars?: number }} event - the sanitized audit payload (counts and flags only).
  */
