@@ -5,6 +5,16 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased]
+
+### Changed
+
+- Raise the `@deepseek-ai/dsh-*` dev/test pins from `0.1.5-rc.2` to `0.1.6-alpha.2`. The regeneration drops the four stale `@deepseek-ai/dsh-code-runtime` entries the rc.2 peer graph carried into `pnpm-lock.yaml` (`grep -c dsh-code-runtime pnpm-lock.yaml` is now 0); the package itself never depended on that group. Both typecheck rulers and the full test suite stay green against the new pins.
+
+### Docs
+
+- Qualify the seam baseline statements in `AGENTS.md` (the pinned peers are `0.1.5-rc.2`; the `0.1.2-rc.1` wording now records where the seam was originally verified) and enumerate the `0.1.6-alpha.2` append class in `index.mjs`: `Session.append<T>(type, data, ...opts)` takes a third argument only for surface-eligible event types and that argument is a `SurfaceIntent`, never an `ignorable` envelope — a non-surface `translate/fix` type has no third parameter, so the adaptive gate still skips and the tool result stays the model-visible log. No behavior change.
+
 ## [0.2.10] - 2026-09-12
 
 ### Changed
