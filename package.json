@@ -123,6 +123,7 @@
     "test": "node --test",
     "coverage": "node --test --experimental-test-coverage",
     "check": "tsc -p tsconfig.check.json",
+    "typecheck:ci": "tsc -p tsconfig.check.ci.json",
     "lint": "oxlint",
     "verify:self-contained": "node scripts/verify-self-contained.mjs",
     "verify:artifacts": "node scripts/verify-artifacts.mjs",
