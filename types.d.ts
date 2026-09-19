@@ -106,6 +106,15 @@ export declare function fixJsonTool(resolved: ResolvedConfig): ReturnType<typeof
 export declare function apply(ctx: Context, config: Config): void
 export declare const plugin: Plugin
 
+// The published package exposes SessionEventMap through the bare entry too, and a
+// consumer that imports it by name must see the same merge. Kept in step with the
+// block below on purpose - both specifiers resolve to the same declaration file.
+declare module '@deepseek-ai/dsh-session' {
+  interface SessionEventMap {
+    /** @see translate/fix above */
+    'translate/fix': FixAuditEvent
+  }
+}
 declare module '@deepseek-ai/dsh-session/types' {
   interface SessionEventMap {
     /**

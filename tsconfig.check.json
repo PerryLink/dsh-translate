@@ -1,5 +1,21 @@
 {
   "compilerOptions": {
+    "paths": {
+      "@deepseek-ai/cordis": ["D:/deepseek-harness/vendor/cordis/lib/types/index.d.ts"],
+      "@deepseek-ai/cordis/*": ["D:/deepseek-harness/vendor/cordis/lib/types/*"],
+      "@deepseek-ai/cordis-plugin-include": ["D:/deepseek-harness/vendor/include/lib/types/index.d.ts"],
+      "@deepseek-ai/cordis-plugin-include/*": ["D:/deepseek-harness/vendor/include/lib/types/*"],
+      "@deepseek-ai/cordis-plugin-loader": ["D:/deepseek-harness/vendor/loader/lib/types/index.d.ts"],
+      "@deepseek-ai/cordis-plugin-loader/*": ["D:/deepseek-harness/vendor/loader/lib/types/*"],
+      "@deepseek-ai/dsh-commands": ["D:/deepseek-harness/packages/interaction/commands/lib/types/index.d.ts"],
+      "@deepseek-ai/dsh-commands/*": ["D:/deepseek-harness/packages/interaction/commands/lib/types/*"],
+      "@deepseek-ai/dsh-session": ["D:/deepseek-harness/packages/core/session/lib/types/index.d.ts"],
+      "@deepseek-ai/dsh-session/*": ["D:/deepseek-harness/packages/core/session/lib/types/*"],
+      "@deepseek-ai/dsh-tools": ["D:/deepseek-harness/packages/core/tools/lib/types/index.d.ts"],
+      "@deepseek-ai/dsh-tools/*": ["D:/deepseek-harness/packages/core/tools/lib/types/*"],
+      "@deepseek-ai/schemastery": ["D:/deepseek-harness/vendor/schemastery/lib/types/index.d.ts"],
+      "@deepseek-ai/schemastery/*": ["D:/deepseek-harness/vendor/schemastery/lib/types/*"]
+    },
     "target": "ES2022",
     "module": "NodeNext",
     "moduleResolution": "NodeNext",

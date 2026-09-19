@@ -127,7 +127,7 @@
   "scripts": {
     "test": "node --test",
     "coverage": "node --test --experimental-test-coverage",
-    "check": "tsc -p tsconfig.check.json",
+    "check": "node scripts/typecheck-checkout.mjs",
     "typecheck:ci": "tsc -p tsconfig.check.ci.json",
     "lint": "oxlint",
     "verify:self-contained": "node scripts/verify-self-contained.mjs",
