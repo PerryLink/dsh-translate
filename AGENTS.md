@@ -29,7 +29,7 @@ Standalone DeepSeek Harness plugin repository (`dsh-translate`, JS form: pure ho
 
 ## Checks
 
-`pnpm test && pnpm run check && pnpm run verify:self-contained && pnpm run check:lockfile && pnpm run verify:artifacts && pnpm run check:lockfile && node scripts/check-readme-sync.mjs && pnpm pack`
+`pnpm test && pnpm run check && pnpm run verify:self-contained && pnpm run verify:artifacts && node scripts/check-readme-sync.mjs && pnpm run check:lockfile && pnpm pack`
 
 ## Docs
 
