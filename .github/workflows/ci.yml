@@ -31,6 +31,8 @@ jobs:
 
       - name: Typecheck (checkJs)
         run: pnpm run check
+      - name: Typecheck (published line)
+        run: pnpm run typecheck:ci
 
       - name: Test
         run: pnpm test
