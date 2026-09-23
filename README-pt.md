@@ -29,7 +29,7 @@
 
 | Superfície | Status |
 |---|---|
-| Harness | Versão principal **`dsh-v0.1.7-alpha.1`** (verificado em 2026-09-18: typecheck duplo + `node --test` 80/80 + portas self-contained/artifacts). Os pins npm dev/test agora são `0.1.6-alpha.2`; peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0`. |
+| Harness | Versão principal **`dsh-v0.1.7-alpha.1`** (verificado em 2026-09-18: typecheck duplo + `node --test` 80/80 + portas self-contained/artifacts). Os pins npm dev/test agora são `0.1.7-alpha.2`; peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0`. |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Forma | Plugin JS de host puro (sem metade de navegador) |
 | Modelo | Qualquer modelo — o reparo é determinista, sem chamadas extras ao modelo |
