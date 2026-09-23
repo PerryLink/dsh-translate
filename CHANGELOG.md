@@ -5,7 +5,17 @@ All notable changes to this project are documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [Unreleased]
+## [0.2.14] - 2026-09-23
+
+### Changed
+
+- Move the `@deepseek-ai/dsh-*` dev/test pins to the published `0.1.7-alpha.2` line and record `0.1.7-alpha.2` in `dshWorkshop.compatibility.dshVersions`; the monthly Compat workflow now installs the `0.1.7-alpha.2` host (`dsh-base` + `dsh-headless`) instead of `0.1.6-alpha.2`.
+- Append the fourth host clause `|| >=0.1.7-0 <0.2.0` to `engines.dsh` and to all three `@deepseek-ai/dsh-*` peer ranges (`dsh-commands`, `dsh-session`, `dsh-tools`). Under semver's prerelease rule a range whose only prerelease comparators sit on earlier tuples cannot admit a later alpha, so the three-clause band excluded the very host line this release targets. No previously supported host line is dropped.
+- Raise the `@deepseek-ai/cordis` dev/test pin to `^4.0.4`.
+
+### Docs
+
+- Correct `AGENTS.md`: the `test/*.test.mjs` layout entry and the "Session append is two-argument" seam conclusion both described the installed peers as pinned to `0.1.5-rc.2` devDependencies. The five READMEs already named `dsh-v0.1.7-alpha.2` and the four-clause peer range, so they needed no change.
 
 ## [0.2.13] - 2026-09-22
 
