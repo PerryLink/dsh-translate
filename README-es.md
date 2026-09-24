@@ -36,7 +36,7 @@ Este plugin forma parte de la [familia de plugins DSH](https://github.com/PerryL
 
 | Superficie | Estado |
 |---|---|
-| Harness | Versión principal **`dsh-v0.1.7-rc.1`** (verificado el 2026-09-24: doble typecheck + `node --test` 80/80 + puertas self-contained/artifacts). Los pines npm dev/test ahora son `0.1.7-rc.1`; peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0`. |
+| Harness | Versión principal **`dsh-v0.1.7-rc.2`** (verificado el 2026-09-25: doble typecheck + `node --test` 80/80 + puertas self-contained/artifacts). Los pines npm dev/test ahora son `0.1.7-rc.2`; peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0`. |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Forma | Plugin JS de host puro (sin mitad de navegador) |
 | Modelo | Cualquier modelo — la reparación es determinista, sin llamadas extra al modelo |
