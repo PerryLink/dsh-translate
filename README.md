@@ -32,7 +32,7 @@
 
 | Surface | Status |
 |---|---|
-| Harness | Main version **`dsh-v0.1.7-alpha.2`** (verified 2026-09-18: dual typecheck rulers + `node --test` 80/80 + self-contained/artifacts gates). npm dev/test pins now `0.1.7-alpha.2`; peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0`. |
+| Harness | Main version **`dsh-v0.1.7-rc.1`** (verified 2026-09-24: dual typecheck rulers + `node --test` 80/80 + self-contained/artifacts gates). npm dev/test pins now `0.1.7-rc.1`; peers `>=0.1.2-rc.1 <0.2.0 \|\| >=0.1.5-alpha.1 <0.2.0 \|\| >=0.1.6-0 <0.2.0 \|\| >=0.1.7-0 <0.2.0`. |
 | Node | `^22.19.0 \|\| >=24.0.0` |
 | Form | Pure-host JS plugin (no browser half) |
 | Model | Any model — repair is deterministic, no extra model calls |
