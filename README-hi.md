@@ -34,6 +34,14 @@
 यह प्लगइन [DSH प्लगइन परिवार](https://github.com/PerryLink) का हिस्सा है (40+ प्लगइन, सभी Apache-2.0)। अगर यह उपयोगी लगे, तो **एक स्टार दें** — इससे कोई सुविधा अनलॉक नहीं होती, पर अगला व्यक्ति इसे खोज में आसानी से पा लेता है।
 
 *English:* part of a 40+ plugin family for DeepSeek Harness. If it is useful, **a star helps the next person find it** — nothing is gated behind it.
+## What is dsh-translate?
+
+DeepSeek Harness के लिए वेंडर पैरामीटर अनुवाद और निर्धारक JSON मरम्मत।
+
+एक ही अनुरोध, हर वेंडर पर। टूटा JSON, बिना डेटा गढ़े ठीक।
+
+![dsh-translate का टर्मिनल डेमो: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
+
 ## संगतता
 
 | सतह | स्थिति |
@@ -60,8 +68,12 @@
 ## त्वरित शुरुआत
 
 ```sh
+dsh plugin --profile web add github:PerryLink/dsh-translate
+```
+
+```sh
 # 1. बंडल को अपने प्रोफ़ाइल में इंस्टॉल करें
-dsh plugin --profile web add "github:PerryLink/dsh-translate#main"
+dsh plugin --profile web add github:PerryLink/dsh-translate
 
 # या npm से (प्रकाशित रिलीज़)
 dsh plugin --profile web add dsh-translate
@@ -79,7 +91,7 @@ dsh --profile web --dump-config | grep -A2 'id: dsh-translate'
 
 ## इंस्टॉल और अनइंस्टॉल
 
-- **git चैनल** (नवीनतम `main`): `dsh plugin --profile web add "github:PerryLink/dsh-translate#main"` — शुद्ध JS, कोई बिल्ड चरण नहीं।
+- **git चैनल** (नवीनतम `main`): `dsh plugin --profile web add github:PerryLink/dsh-translate` — शुद्ध JS, कोई बिल्ड चरण नहीं।
 - **npm चैनल** (प्रकाशित रिलीज़): `dsh plugin --profile web add dsh-translate`।
 - **tarball चैनल**: इस रेपो में `pnpm pack`, फिर `dsh plugin --profile web add ./dsh-translate-<version>.tgz`।
 - **अनइंस्टॉल**: `dsh plugin --profile web remove dsh-translate` (या प्रोफ़ाइल पैच से पंक्ति हटाएँ)।

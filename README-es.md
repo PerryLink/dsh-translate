@@ -34,6 +34,14 @@
 Este plugin forma parte de la [familia de plugins DSH](https://github.com/PerryLink) (más de 40, todos Apache-2.0). Si te resulta útil, **dale una estrella**: no desbloquea nada, pero ayuda a que la siguiente persona lo encuentre antes.
 
 *English:* part of a 40+ plugin family for DeepSeek Harness. If it is useful, **a star helps the next person find it** — nothing is gated behind it.
+## What is dsh-translate?
+
+Traducción de parámetros entre proveedores y reparación determinista de JSON para DeepSeek Harness.
+
+La misma petición, en cada proveedor. JSON roto, arreglado sin inventar datos.
+
+![Demostración de terminal de dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
+
 ## Compatibilidad
 
 | Superficie | Estado |
@@ -60,8 +68,12 @@ resultado de herramienta (éxito, texto JSON) ──▶ extraer valla ──▶ 
 ## Inicio rápido
 
 ```sh
+dsh plugin --profile web add github:PerryLink/dsh-translate
+```
+
+```sh
 # 1. instala el bundle en tu perfil
-dsh plugin --profile web add "github:PerryLink/dsh-translate#main"
+dsh plugin --profile web add github:PerryLink/dsh-translate
 
 # o desde npm (versiones publicadas)
 dsh plugin --profile web add dsh-translate
@@ -79,7 +91,7 @@ Luego pídele al agente un mapeo o una reparación:
 
 ## Instalación y desinstalación
 
-- **Canal git** (último `main`): `dsh plugin --profile web add "github:PerryLink/dsh-translate#main"` — JS puro, sin paso de compilación.
+- **Canal git** (último `main`): `dsh plugin --profile web add github:PerryLink/dsh-translate` — JS puro, sin paso de compilación.
 - **Canal npm** (versiones publicadas): `dsh plugin --profile web add dsh-translate`.
 - **Canal tarball**: `pnpm pack` en este repositorio y luego `dsh plugin --profile web add ./dsh-translate-<version>.tgz`.
 - **Desinstalar**: `dsh plugin --profile web remove dsh-translate` (o elimina la fila del parche del perfil).
