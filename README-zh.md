@@ -45,6 +45,10 @@ DeepSeek Harness 的厂商参数翻译与确定性 JSON 修复。
 
 ![dsh-translate 终端演示：dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
 
+![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
+
+*同一次运行，动图版。*
+
 ## 兼容性
 
 | 方面 | 状态 |

@@ -46,6 +46,10 @@ Same request, every vendor. Broken JSON, fixed without inventing data.
 
 ![Terminal demo of dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
 
+![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
+
+*The same run, animated.*
+
 ## Compatibility
 
 | Surface | Status |

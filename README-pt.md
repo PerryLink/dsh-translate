@@ -43,6 +43,10 @@ O mesmo pedido, em cada provedor. JSON quebrado, consertado sem inventar dados.
 
 ![Demonstração de terminal do dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
 
+![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
+
+*A mesma execução, animada.*
+
 ## Compatibilidade
 
 | Superfície | Status |

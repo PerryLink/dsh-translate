@@ -43,6 +43,10 @@ DeepSeek Harness के लिए वेंडर पैरामीटर अ�
 
 ![dsh-translate का टर्मिनल डेमो: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
 
+![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
+
+*वही रन, एनिमेटेड।*
+
 ## संगतता
 
 | सतह | स्थिति |
