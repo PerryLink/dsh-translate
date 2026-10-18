@@ -1,5 +1,23 @@
 # Changelog
 
+## [0.2.24] - 2026-10-18
+
+### Changed
+
+- Add a 1280×720 hero and a 960×540, 4-second terminal GIF rendered from the test run; `screenshots.json` is an object array and `capture.json` records the command.
+
+## [0.2.23] - 2026-10-18
+
+### Fixed
+
+- **Docs no longer claim a `translate/fix` audit event lands on 0.1.6+/0.2.x.** Those hosts do not know the private event type; the adaptive gate skips the append. The tool result is the durable evidence. Also added an explicit “parameter mapping table, not machine translation” line.
+
+## [0.2.22] - 2026-10-18
+
+### Changed
+
+- Compatibility: `engines.dsh` -> `>=0.2.1-0 <0.3.0`; devDependencies to `0.2.1-rc.2`; add `@deepseek-ai/dsh-working-directory`; `dshVersions` includes `0.2.1-rc.2`.
+
 All notable changes to this project are documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),

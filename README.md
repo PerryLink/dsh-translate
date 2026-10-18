@@ -10,6 +10,8 @@
 
 *Same request, every vendor. Broken JSON, fixed without inventing data.*
 
+**This is a vendor parameter mapping table, not machine translation.**
+
 > **Official repository.** This is the only official repository of dsh-translate, maintained by PerryLink. Same-name repositories under other accounts are not affiliated.
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -44,7 +46,7 @@ Vendor parameter translation and deterministic JSON repair for DeepSeek Harness.
 
 Same request, every vendor. Broken JSON, fixed without inventing data.
 
-![Terminal demo of dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
+![Terminal demo of dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-hero.png)
 
 ![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
 
@@ -158,8 +160,7 @@ Example override in your profile patch:
 ## Permissions & data
 
 - **Permissions**: no network, no subprocess, no credentials — the plugin only consumes the official `commands` and `tools` services and appends to the session log.
-- **Data**: repair never fabricates values; the only model-visible additions are the repaired canonical value and the `fix_json` diff. Session audit events (`translate/fix`) carry tool name, call id, strategy names, edit counts, and truncation flags — never payloads. The audit write is gated by the host’s session-event vocabulary: hosts that know `translate/fix` get the plain two-argument append, hosts with the `ignorable` append envelope get the marked append, and envelope-less hosts (`0.1.0-rc.6`–`0.1.1-rc.2`, `0.1.2-rc.1`) get no audit append — the tool result remains the model-visible log.
-0.1.2-rc.1 (adapted 2026-09-04): the session envelope keeps its ignorable field for stored-log read compatibility only - Session.append still cannot stamp it, so audit-gate behavior is unchanged.
+- **Data**: repair never fabricates values; the only model-visible additions are the repaired canonical value and the `fix_json` diff. Session audit events (`translate/fix`) carry tool name, call id, strategy names, edit counts, and truncation flags — never payloads. The audit write is gated by the host’s session-event vocabulary: a host that knows `translate/fix` gets the plain two-argument append, and a host with the `ignorable` append envelope gets the marked append. **On 0.1.6+ and 0.2.x the private `translate/fix` type is not in the host vocabulary, so no audit event is written**; the tool result remains the model-visible log. This is an observability limitation, not a data-plane change.
 
 ## Security boundaries
 
@@ -173,7 +174,7 @@ Example override in your profile patch:
 - The supported JSON Schema subset mirrors the harness tool registry (`type`/`oneOf`/`properties`/`required`/`additionalProperties`/`items`/`enum`/`const`); other keywords are rejected as unsupported, not silently ignored.
 - Repair only applies to successful results whose canonical value is a JSON-text string; a value that already failed schema validation arrives as a failed result and is never flipped.
 - The translation table covers 11 vendors × 13 canonical parameters; `extended` rows follow public API references (not the upstream trio) and are marked as such in `lib/rosetta.mjs`.
-- On hosts that neither know `translate/fix` nor expose the `ignorable` append envelope — the published `0.1.0-rc.6`–`0.1.1-rc.2` line and `0.1.2-rc.1`, which fails closed on unknown event types at read — the adaptive gate skips the audit append so the session log is never polluted; the in-log audit mirror is lost on those hosts until the event type is registered.
+- On hosts that neither know `translate/fix` nor expose the `ignorable` append envelope — including `0.1.6+` and `0.2.x`, whose private-type vocabulary does not contain it — the adaptive gate skips the audit append so the session log is never polluted; the tool result remains the durable evidence until the event type is registered.
 
 ## Development
 

@@ -7,6 +7,8 @@
 
 *O mesmo pedido, em cada provedor. JSON quebrado, consertado sem inventar dados.*
 
+**É uma tabela de mapeamento de parâmetros entre provedores, não tradução automática.**
+
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
 [![Gitee](https://img.shields.io/badge/Gitee-mirror-c71d23?logo=gitee)](https://gitee.com/perrylink/dsh-translate)
 [![DSH plugin](https://img.shields.io/badge/dsh--plugin-✅-green)](https://github.com/topics/dsh-plugin)
@@ -41,7 +43,7 @@ Tradução de parâmetros entre provedores e reparo determinista de JSON para o 
 
 O mesmo pedido, em cada provedor. JSON quebrado, consertado sem inventar dados.
 
-![Demonstração de terminal do dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
+![Demonstração de terminal do dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-hero.png)
 
 ![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
 

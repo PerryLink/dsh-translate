@@ -51,7 +51,9 @@ unconstrained `json`-rooted, or the tool is opted in through
    schemas receive the parsed object, string roots receive the repaired text;
    the registry re-validates and re-renders the replacement. The
    `translate/fix` session event records only tool name, call id, applied
-   strategies, edit count, and truncation flags — never payloads.
+   strategies, edit count, and truncation flags — never payloads — and only on
+   a host whose event vocabulary admits the private type. On 0.1.6+/0.2.x the
+   append is skipped; the tool result is the audit trail.
 
 The same pipeline powers `fix_json`, the explicit tool: the model hands over
 `{ text, schema?, strategies? }` and receives `{ ok, repaired?, diff?,

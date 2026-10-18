@@ -1,6 +1,6 @@
 {
   "name": "dsh-translate",
-  "version": "0.2.21",
+  "version": "0.2.24",
   "description": "Vendor parameter translation and deterministic JSON repair for DeepSeek Harness: the /translate command maps temperature/top_p/max_tokens/stop/system across 11 vendors, and the tools/post-execute repair layer (plus the fix_json tool) fixes broken JSON tool output with escape repair, trailing-comma removal, truncation closure, and required-field completion — never fabricating data",
   "repository": {
     "type": "git",
@@ -74,7 +74,8 @@
         "0.1.7-alpha.2",
         "0.1.7-rc.1",
         "0.1.7-rc.2",
-        "0.2.1-alpha.1"
+        "0.2.1-alpha.1",
+        "0.2.1-rc.2"
       ]
     },
     "capability": {
@@ -104,7 +105,7 @@
   ],
   "engines": {
     "node": "^22.19.0 || >=24.0.0",
-    "dsh": ">=0.1.2-rc.1 <0.2.0 || >=0.1.5-alpha.1 <0.2.0 || >=0.1.6-0 <0.2.0 || >=0.1.7-0 <0.2.0 || >=0.2.0-0 <0.3.0 || >=0.2.1-0 <0.3.0"
+    "dsh": ">=0.2.1-0 <0.3.0"
   },
   "packageManager": "pnpm@11.7.0",
   "peerDependencies": {
@@ -118,15 +119,16 @@
     "@deepseek-ai/cordis": "^4.0.5-alpha.1",
     "@deepseek-ai/cordis-plugin-include": "^1.0.10-alpha.1",
     "@deepseek-ai/cordis-plugin-loader": "^1.0.6-alpha.1",
-    "@deepseek-ai/dsh-commands": "0.2.1-alpha.1",
-    "@deepseek-ai/dsh-llm": "0.2.1-alpha.1",
-    "@deepseek-ai/dsh-session": "0.2.1-alpha.1",
-    "@deepseek-ai/dsh-system-prompt": "0.2.1-alpha.1",
-    "@deepseek-ai/dsh-tools": "0.2.1-alpha.1",
+    "@deepseek-ai/dsh-commands": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-llm": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-session": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-system-prompt": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-tools": "0.2.1-rc.2",
     "@deepseek-ai/schemastery": "^3.18.5-alpha.1",
     "@types/node": "^22.19.0",
     "oxlint": "0.18.1",
-    "typescript": "^5.9.0"
+    "typescript": "^5.9.0",
+    "@deepseek-ai/dsh-working-directory": "0.2.1-rc.2"
   },
   "scripts": {
     "test": "node --test",

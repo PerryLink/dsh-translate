@@ -1,5 +1,14 @@
-{
-  "screenshots": [
-    "docs/assets/dsh-translate-demo.png"
-  ]
-}
+[
+  {
+    "path": "docs/assets/dsh-translate-hero.png",
+    "kind": "hero",
+    "alt": "dsh-translate terminal output",
+    "caption": "Real dsh-translate test run; test suite green."
+  },
+  {
+    "path": "docs/assets/dsh-translate-demo.gif",
+    "kind": "demo",
+    "alt": "Animated dsh-translate terminal session",
+    "caption": "The same run, assembled line by line."
+  }
+]

@@ -7,6 +7,8 @@
 
 *同一请求，适配每家厂商。坏 JSON 修好，绝不编造数据。*
 
+**这是厂商参数映射表，不是机器翻译。**
+
 > **官方仓库。** 本仓库是 dsh-translate 的唯一官方仓库，由 PerryLink 维护。其他账号下的同名仓库与本项目无关。
 
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](LICENSE)
@@ -43,7 +45,7 @@ DeepSeek Harness 的厂商参数翻译与确定性 JSON 修复。
 
 同一请求，适配每家厂商。坏 JSON 修好，绝不编造数据。
 
-![dsh-translate 终端演示：dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.png)
+![dsh-translate 终端演示：dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-hero.png)
 
 ![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
 
