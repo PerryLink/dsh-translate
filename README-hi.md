@@ -23,6 +23,11 @@
 
 [English](README.md) · [简体中文](README-zh.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
+```sh
+dsh plugin --profile <name> add dsh-translate
+```
+
+
 </div>
 
 ---
@@ -31,6 +36,13 @@
 **📖 इकोसिस्टम नॉलेज बेस** — मापे गए आँकड़े, मार्केटिंग नहीं: [डेवलपमेंट गाइड · चयन डेटा · रखरखाव मानदंड](https://perrylink.github.io/dsh-plugin-guide/)।
 
 <!-- star-cta -->
+## इंस्टॉल और अनइंस्टॉल
+
+- **git चैनल** (नवीनतम `main`): `dsh plugin --profile web add github:PerryLink/dsh-translate` — शुद्ध JS, कोई बिल्ड चरण नहीं।
+- **npm चैनल** (प्रकाशित रिलीज़): `dsh plugin --profile web add dsh-translate`।
+- **tarball चैनल**: इस रेपो में `pnpm pack`, फिर `dsh plugin --profile web add ./dsh-translate-<version>.tgz`।
+- **अनइंस्टॉल**: `dsh plugin --profile web remove dsh-translate` (या प्रोफ़ाइल पैच से पंक्ति हटाएँ)।
+
 ## ⭐ 如果它帮到了你
 
 यह प्लगइन [DSH प्लगइन परिवार](https://github.com/PerryLink) का हिस्सा है (40+ प्लगइन, सभी Apache-2.0)। अगर यह उपयोगी लगे, तो **एक स्टार दें** — इससे कोई सुविधा अनलॉक नहीं होती, पर अगला व्यक्ति इसे खोज में आसानी से पा लेता है।
@@ -95,13 +107,6 @@ dsh --profile web --dump-config | grep -A2 'id: dsh-translate'
 > /translate openai ernie max_tokens
 > fix_json से मरम्मत करें: {"a": 1,} स्कीमा {"type":"object","properties":{"a":{"type":"integer"}},"required":["a"]} के विरुद्ध
 ```
-
-## इंस्टॉल और अनइंस्टॉल
-
-- **git चैनल** (नवीनतम `main`): `dsh plugin --profile web add github:PerryLink/dsh-translate` — शुद्ध JS, कोई बिल्ड चरण नहीं।
-- **npm चैनल** (प्रकाशित रिलीज़): `dsh plugin --profile web add dsh-translate`।
-- **tarball चैनल**: इस रेपो में `pnpm pack`, फिर `dsh plugin --profile web add ./dsh-translate-<version>.tgz`।
-- **अनइंस्टॉल**: `dsh plugin --profile web remove dsh-translate` (या प्रोफ़ाइल पैच से पंक्ति हटाएँ)।
 
 ## कॉन्फ़िगरेशन
 
