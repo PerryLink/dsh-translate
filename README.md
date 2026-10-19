@@ -58,11 +58,11 @@ Vendor parameter translation and deterministic JSON repair for DeepSeek Harness.
 
 Same request, every vendor. Broken JSON, fixed without inventing data.
 
-![Terminal demo of dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-hero.png)
+![Workflow diagram for dsh-translate: install → open panel → act.](docs/assets/dsh-translate-flow.svg)
 
-![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
+*Workflow overview: install → open panel → act. The examples below use the real command surface.*
 
-*The same run, animated.*
+
 
 ## Compatibility
 
@@ -110,6 +110,18 @@ Then ask the agent to check a mapping or repair a payload:
 > /translate openai ernie max_tokens
 > Use fix_json to repair: {"a": 1,} against {"type":"object","properties":{"a":{"type":"integer"}},"required":["a"]}
 ```
+
+### Examples
+
+These are the plugin's real entry points; install once, then call one.
+
+#### Detailed example
+
+- `/translate`
+
+#### Brief examples
+
+- `fix_json`
 
 ## Configuration
 

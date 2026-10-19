@@ -55,9 +55,10 @@ DeepSeek Harness के लिए वेंडर पैरामीटर अ�
 
 एक ही अनुरोध, हर वेंडर पर। टूटा JSON, बिना डेटा गढ़े ठीक।
 
-![dsh-translate का टर्मिनल डेमो: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-hero.png)
+![dsh-translate कार्यप्रवाह आरेख: इंस्टॉल → पैनल खोलें → कार्य।](docs/assets/dsh-translate-flow.svg)
 
-![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
+*कार्यप्रवाह: इंस्टॉल → पैनल खोलें → कार्य। नीचे के उदाहरण वास्तविक कमांड सतह का उपयोग करते हैं।*
+
 
 *वही रन, एनिमेटेड।*
 
@@ -107,6 +108,18 @@ dsh --profile web --dump-config | grep -A2 'id: dsh-translate'
 > /translate openai ernie max_tokens
 > fix_json से मरम्मत करें: {"a": 1,} स्कीमा {"type":"object","properties":{"a":{"type":"integer"}},"required":["a"]} के विरुद्ध
 ```
+
+### उदाहरण
+
+ये वास्तविक प्रवेश बिंदु हैं; इंस्टॉल के बाद एक चलाएँ।
+
+#### विस्तृत उदाहरण
+
+- `/translate`
+
+#### संक्षिप्त उदाहरण
+
+- `fix_json`
 
 ## कॉन्फ़िगरेशन
 

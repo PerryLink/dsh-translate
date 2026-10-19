@@ -55,9 +55,10 @@ Traducción de parámetros entre proveedores y reparación determinista de JSON 
 
 La misma petición, en cada proveedor. JSON roto, arreglado sin inventar datos.
 
-![Demostración de terminal de dsh-translate: dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-hero.png)
+![Diagrama de flujo de dsh-translate: instalar → abrir panel → actuar.](docs/assets/dsh-translate-flow.svg)
 
-![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
+*Resumen del flujo: instalar → abrir panel → actuar. Los ejemplos siguientes usan la superficie de comandos real.*
+
 
 *La misma ejecución, animada.*
 
@@ -107,6 +108,18 @@ Luego pídele al agente un mapeo o una reparación:
 > /translate openai ernie max_tokens
 > Usa fix_json para reparar: {"a": 1,} contra {"type":"object","properties":{"a":{"type":"integer"}},"required":["a"]}
 ```
+
+### Ejemplos
+
+Son los puntos de entrada reales; instala y llama a uno.
+
+#### Ejemplo detallado
+
+- `/translate`
+
+#### Ejemplos breves
+
+- `fix_json`
 
 ## Configuración
 

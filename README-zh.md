@@ -50,9 +50,10 @@ DeepSeek Harness 的厂商参数翻译与确定性 JSON 修复。
 
 同一请求，适配每家厂商。坏 JSON 修好，绝不编造数据。
 
-![dsh-translate 终端演示：dsh-translate — /translate openai ernie max_tokens](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-hero.png)
+![dsh-translate 工作流图：安装 → 打开面板 → 操作。](docs/assets/dsh-translate-flow.svg)
 
-![Animated terminal demo of dsh-translate](https://raw.githubusercontent.com/PerryLink/dsh-translate/main/docs/assets/dsh-translate-demo.gif)
+*工作流概览：安装 → 打开面板 → 操作。下面的示例使用实际命令面。*
+
 
 *同一次运行，动图版。*
 
@@ -109,6 +110,18 @@ dsh --profile web --dump-config | grep -A2 'id: dsh-translate'
 - **npm 通道**（正式发布版）：`dsh plugin --profile web add dsh-translate`。
 - **tarball 通道**：在本仓库执行 `pnpm pack`，然后 `dsh plugin --profile web add ./dsh-translate-<version>.tgz`。
 - **卸载**：`dsh plugin --profile web remove dsh-translate`（或从 profile patch 中删除该行）。
+
+### 示例
+
+以下为插件真实入口；安装后调用一个即可。
+
+#### 详细示例
+
+- `/translate`
+
+#### 简短示例
+
+- `fix_json`
 
 ## 配置
 
