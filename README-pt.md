@@ -217,7 +217,7 @@ Evidência estática: `dsh-plugin-doctor` K10–K13 retornam `pass` em todas as 
 
 - [@PerryLink](https://github.com/PerryLink) — criador e mantenedor: portes da tabela de tradução e do pipeline de reparo, superfícies do plugin, testes e a documentação em cinco idiomas.
 
-## Família de plugins DSH da PerryLink
+## PerryLink DSH Plugin Family
 
 Este projeto faz parte da família de plugins do DeepSeek Harness da [PerryLink](https://github.com/PerryLink). O registro fica recolhido abaixo para que cada README mantenha uma primeira tela curta; expanda para ver cada linha e seu status.
 

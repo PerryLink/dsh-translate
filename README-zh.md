@@ -219,7 +219,7 @@ pnpm pack           # 发布用 tarball
 
 - [@PerryLink](https://github.com/PerryLink) —— 创建者与维护者：翻译表与修复管线移植、插件表面、测试与五语文档。
 
-## PerryLink DSH 插件家族
+## PerryLink DSH Plugin Family
 
 本项目是 [PerryLink](https://github.com/PerryLink) 维护的 DeepSeek Harness 插件家族成员。完整名单默认折叠，避免每个 README 的首屏被长表淹没；点击展开可查看每一行及其状态。
 
