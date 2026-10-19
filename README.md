@@ -117,7 +117,20 @@ These are the plugin's real entry points; install once, then call one.
 
 #### Detailed example
 
-- `/translate`
+**Command**
+
+~~~sh
+/translate openai ernie max_tokens
+~~~
+
+**Output**
+
+~~~text
+openai (OpenAI) → ernie (Baidu ERNIE (Wenxin)):
+  max_tokens: max_tokens → max_output_tokens
+~~~
+
+*Observed from `README.md:107-110; index.mjs:372-385; test/index.test.mjs:100-105`*
 
 #### Brief examples
 

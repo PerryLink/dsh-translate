@@ -115,7 +115,20 @@ São os pontos de entrada reais; instale e chame um.
 
 #### Exemplo detalhado
 
-- `/translate`
+**Comando**
+
+~~~sh
+/translate openai ernie max_tokens
+~~~
+
+**Saída**
+
+~~~text
+openai (OpenAI) → ernie (Baidu ERNIE (Wenxin)):
+  max_tokens: max_tokens → max_output_tokens
+~~~
+
+*Observado em `README.md:107-110; index.mjs:372-385; test/index.test.mjs:100-105`*
 
 #### Exemplos breves
 

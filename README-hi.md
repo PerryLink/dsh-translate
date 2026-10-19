@@ -115,7 +115,20 @@ dsh --profile web --dump-config | grep -A2 'id: dsh-translate'
 
 #### विस्तृत उदाहरण
 
-- `/translate`
+**कमांड**
+
+~~~sh
+/translate openai ernie max_tokens
+~~~
+
+**आउटपुट**
+
+~~~text
+openai (OpenAI) → ernie (Baidu ERNIE (Wenxin)):
+  max_tokens: max_tokens → max_output_tokens
+~~~
+
+*स्रोत `README.md:107-110; index.mjs:372-385; test/index.test.mjs:100-105`*
 
 #### संक्षिप्त उदाहरण
 

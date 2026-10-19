@@ -117,7 +117,20 @@ dsh --profile web --dump-config | grep -A2 'id: dsh-translate'
 
 #### 详细示例
 
-- `/translate`
+**命令**
+
+~~~sh
+/translate openai ernie max_tokens
+~~~
+
+**输出**
+
+~~~text
+openai (OpenAI) → ernie (Baidu ERNIE (Wenxin)):
+  max_tokens: max_tokens → max_output_tokens
+~~~
+
+*来源 `README.md:107-110; index.mjs:372-385; test/index.test.mjs:100-105`*
 
 #### 简短示例
 
