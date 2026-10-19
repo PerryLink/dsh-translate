@@ -132,6 +132,22 @@ openai (OpenAI) → ernie (Baidu ERNIE (Wenxin)):
 
 *来源 `README.md:107-110; index.mjs:372-385; test/index.test.mjs:100-105`*
 
+#### 失败分支
+
+**输入**
+
+~~~text
+{"text":"{}","schema":{"pattern":"x"}}
+~~~
+
+**输出**
+
+~~~text
+fix_json failed (INVALID_SCHEMA): #.pattern is not a supported keyword (subset: type/oneOf/properties/required/additionalProperties/items/enum/const)
+~~~
+
+*来源 `plugins/dsh-translate/index.mjs:486-488; plugins/dsh-translate/lib/fix.mjs:241; plugins/dsh-translate/test/index.test.mjs:347-352`*
+
 #### 简短示例
 
 - `fix_json`

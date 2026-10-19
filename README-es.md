@@ -130,6 +130,22 @@ openai (OpenAI) → ernie (Baidu ERNIE (Wenxin)):
 
 *Observado en `README.md:107-110; index.mjs:372-385; test/index.test.mjs:100-105`*
 
+#### Rama de fallo
+
+**Entrada**
+
+~~~text
+{"text":"{}","schema":{"pattern":"x"}}
+~~~
+
+**Salida**
+
+~~~text
+fix_json failed (INVALID_SCHEMA): #.pattern is not a supported keyword (subset: type/oneOf/properties/required/additionalProperties/items/enum/const)
+~~~
+
+*Observado en `plugins/dsh-translate/index.mjs:486-488; plugins/dsh-translate/lib/fix.mjs:241; plugins/dsh-translate/test/index.test.mjs:347-352`*
+
 #### Ejemplos breves
 
 - `fix_json`
