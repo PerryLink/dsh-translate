@@ -13,6 +13,7 @@ import { CallId } from './call-id.mjs'
 import SessionStore, { SessionId } from '@deepseek-ai/dsh-session'
 import { defineTool } from '@deepseek-ai/dsh-tools'
 import ToolRuntime from '@deepseek-ai/dsh-tools'
+import * as NativeToolExecutor from '@deepseek-ai/dsh-tool-executor-native'
 import CommandRuntime from '@deepseek-ai/dsh-commands'
 import { handleTranslateCommand, translatePair, translateOverview, repairIntended, resolveConfig } from '../index.mjs'
 import * as plugin from '../index.mjs'
@@ -45,6 +46,9 @@ async function mountHarness(config = {}) {
   session.append('turn/start', { turn: 1 })
   ctx.provide('systemPrompt', { tools: () => () => undefined, section: () => () => undefined })
   await ctx.plugin(ToolRuntime)
+  // 0.2.2 moved raw batch execution behind a pluggable executor: mounting the
+  // tool runtime alone leaves ctx.tools.execute() without a provider.
+  await ctx.plugin(NativeToolExecutor)
   await ctx.plugin(CommandRuntime)
   const agent = makeAgent(session)
   await ctx.plugin(plugin, config)
@@ -53,13 +57,17 @@ async function mountHarness(config = {}) {
 
 async function callTool(/** @type {any} */ harness, /** @type {string} */ name, /** @type {unknown} */ args) {
   callCounter += 1
-  return harness.ctx.tools.execute({
-    callId: CallId(`dsh-translate-spec-${callCounter}`),
-    name,
-    arguments: args,
+  const batch = await harness.ctx.tools.execute({
+    calls: [{
+      type: 'tool-call',
+      id: CallId(`dsh-translate-spec-${callCounter}`),
+      name,
+      arguments: JSON.stringify(args),
+    }],
     agent: harness.agent,
     signal: new AbortController().signal,
   })
+  return batch.results[0]?.result
 }
 
 // ---------------------------------------------------------------------------

@@ -11,6 +11,7 @@ import { Context } from '@deepseek-ai/cordis'
 import { CallId } from './call-id.mjs'
 import SessionStore, { SessionId } from '@deepseek-ai/dsh-session'
 import ToolRuntime from '@deepseek-ai/dsh-tools'
+import * as NativeToolExecutor from '@deepseek-ai/dsh-tool-executor-native'
 import CommandRuntime from '@deepseek-ai/dsh-commands'
 import { extractJsonFromText, looksLikeJsonText, repairJsonText } from '../lib/fix.mjs'
 import * as plugin from '../index.mjs'
@@ -24,6 +25,9 @@ async function mountHarness() {
   const session = ctx.sessions.create(SessionId('dsh-translate-pathological'))
   ctx.provide('systemPrompt', { tools: () => () => undefined, section: () => () => undefined })
   await ctx.plugin(ToolRuntime)
+  // 0.2.2 moved raw batch execution behind a pluggable executor: mounting the
+  // tool runtime alone leaves ctx.tools.execute() without a provider.
+  await ctx.plugin(NativeToolExecutor)
   await ctx.plugin(CommandRuntime)
   const agent = {
     id: session.id, options: {}, session, inbox: {}, status: 'idle', ctx,
@@ -74,12 +78,17 @@ test('a 1 MB prose payload is skipped by the fence extractor', { timeout: HARD_T
 test('fix_json through the real registry stays bounded on a pathological payload', { timeout: HARD_TIMEOUT }, async () => {
   const ctx = await mountHarness()
   try {
-    const result = await ctx.tools.execute({
-      callId: CallId('dsh-translate-pathological'),
-      name: 'fix_json',
-      arguments: { text: '{"a": ' + '['.repeat(500) + '1' + ','.repeat(200) + '}' },
+    const batch = await ctx.tools.execute({
+      calls: [{
+        type: 'tool-call',
+        id: CallId('dsh-translate-pathological'),
+        name: 'fix_json',
+        arguments: JSON.stringify({ text: '{"a": ' + '['.repeat(500) + '1' + ','.repeat(200) + '}' }),
+      }],
       signal: new AbortController().signal,
     })
+    const result = batch.results[0]?.result
+    assert.ok(result !== undefined, 'the batch returned one result')
     assert.equal(result.isError, false)
     assert.equal(typeof /** @type {any} */ (result.value)?.ok, 'boolean')
   } finally {

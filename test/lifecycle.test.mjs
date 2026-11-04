@@ -14,6 +14,7 @@ import Loader from '@deepseek-ai/cordis-plugin-loader'
 import { CallId } from './call-id.mjs'
 import SessionStore, { SessionId } from '@deepseek-ai/dsh-session'
 import ToolRuntime from '@deepseek-ai/dsh-tools'
+import * as NativeToolExecutor from '@deepseek-ai/dsh-tool-executor-native'
 import CommandRuntime from '@deepseek-ai/dsh-commands'
 import * as plugin from '../index.mjs'
 
@@ -42,6 +43,9 @@ async function mountHarness() {
   const session = ctx.sessions.create(SessionId('dsh-translate-lifecycle'))
   ctx.provide('systemPrompt', { tools: () => () => undefined, section: () => () => undefined })
   await ctx.plugin(ToolRuntime)
+  // 0.2.2 moved raw batch execution behind a pluggable executor: mounting the
+  // tool runtime alone leaves ctx.tools.execute() without a provider.
+  await ctx.plugin(NativeToolExecutor)
   await ctx.plugin(CommandRuntime)
   const agent = /** @type {any} */ (makeAgent(session))
   const pluginFiber = await ctx.plugin(plugin, {})
@@ -115,13 +119,18 @@ test('fix_json keeps the model schema, canonical value, and content blocks stabl
       required: ['text'],
     })
 
-    const result = await harness.ctx.tools.execute({
-      callId: CallId('dsh-translate-three-interfaces'),
-      name: 'fix_json',
-      arguments: { text: '{"a": 1,}' },
+    const batch = await harness.ctx.tools.execute({
+      calls: [{
+        type: 'tool-call',
+        id: CallId('dsh-translate-three-interfaces'),
+        name: 'fix_json',
+        arguments: JSON.stringify({ text: '{"a": 1,}' }),
+      }],
       agent: harness.agent,
       signal: new AbortController().signal,
     })
+    const result = batch.results[0]?.result
+    assert.ok(result !== undefined, 'the batch returned one result')
     assert.equal(result.isError, false)
     // Canonical value: the program-facing repair outcome (pretty-printed
     // repaired text, sanitized diff entries).

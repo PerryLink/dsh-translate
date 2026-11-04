@@ -51,6 +51,11 @@ try {
     config: { path: pathToFileURL(configPath).href },
   })
   await ctx.loader.await()
+  // cordis 4.1.0 no longer rejects loader.await() when a row fails to apply:
+  // the error settles on that row's fiber. Await every row fiber so an invalid
+  // config or a missing inject still fails loud here instead of surfacing as a
+  // missing registry entry. (0.2.2 upgrade fix; verified against loader 1.1.0.)
+  for (const entry of ctx.loader.entries()) await entry.fiber
   await rethrowFirstFailedRow()
 
   // Authoritative registries carry the plugin's contributions.
@@ -88,17 +93,21 @@ try {
   // Real behavior: fix_json through the real tools registry. The trailing
   // comma is repairable only while the trailingComma strategy is enabled,
   // so the expected outcome pins the config that the Loader actually applied.
-  const result = await ctx.tools.execute({
-    callId: CallId('dsh-translate-loader-runner'),
-    name: 'fix_json',
-    arguments: { text: '{"a": 1,}', schema: { type: 'object', properties: { a: { type: 'integer' } }, required: ['a'], additionalProperties: false } },
+  const batch = await ctx.tools.execute({
+    calls: [{
+      type: 'tool-call',
+      id: CallId('dsh-translate-loader-runner'),
+      name: 'fix_json',
+      arguments: JSON.stringify({ text: '{"a": 1,}', schema: { type: 'object', properties: { a: { type: 'integer' } }, required: ['a'], additionalProperties: false } }),
+    }],
     agent,
     signal: new AbortController().signal,
   })
-  const ok = result.isError === false && /** @type {any} */ (result.value)?.ok === true
+  const result = batch.results[0]?.result
+  const ok = result?.isError === false && /** @type {any} */ (result.value)?.ok === true
   const observed = expected === 'repaired' ? ok : !ok
   if (!observed) {
-    throw new Error(`Loader composition: expected ${expected}, got ${JSON.stringify({ isError: result.isError, value: result.value })}`)
+    throw new Error(`Loader composition: expected ${expected}, got ${JSON.stringify({ isError: result?.isError, value: result?.value })}`)
   }
 
   const summary = {
