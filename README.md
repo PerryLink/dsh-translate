@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-dark.svg">
-  <img src="docs/assets/dsh-translate-flow-light.svg" width="100%" alt="dsh-translate 数据流：成功的工具结果（JSON 文本）→ 提取围栏 → 解析 → 修复循环（转义/去尾逗号/截断闭合/null 补全）→ schema 校验 → accept 或 next()；/translate 提供 13 个规范参数 × 11 家厂商的映射；translate/fix 审计只记计数与标志">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-translate-hero-zh-light.webp" width="100%" alt="dsh-translate 横幅：左侧为插件名与两句价值说明，右侧为 13 个规范参数 × 11 家厂商的映射点阵，以及把坏 JSON 确定性修到能过 schema 校验的修复卡片">
 </picture>
 
 # dsh-translate
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-translate
 `dsh-translate` 管两件事，彼此独立。第一件是**厂商参数翻译**：把 `temperature`、`top_p`、`max_tokens`、`stop`、`system` 这类规范参数，按 11 家厂商的真实字段名对过去（OpenAI、ERNIE、Qwen、Anthropic、Google、DeepSeek、Mistral、Cohere、xAI、Groq、Azure），既可以用 `/translate openai ernie max_tokens` 查单条，也可以让 `lib/rosetta.mjs` 的 `transformRequest` 整包转换一个标准请求。第二件是**确定性 JSON 修复**：成功的工具结果里如果带着一段坏 JSON，`tools/post-execute` 监听器会先提取围栏、再解析、再跑四种文本策略，直到它能过 schema 校验——修不动就原样放行，绝不编造数值。
 
 名字里的“翻译”指的是厂商参数映射，不是机器翻译。纯主机端、纯 ESM、零构建步骤，`index.mjs` 与 `lib/` 即发布产物。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-translate-flow-v5-light.svg" width="100%" alt="dsh-translate 结构图：上栏 /translate 命令面读取 13 × 11 的 rosetta 表并给出单参数映射；下栏 tools/post-execute 与 fix_json 的修复状态机——认领门、围栏提取与解析、≤ maxSteps 的策略循环、必填字段 null 补全、schema 子集校验，最后 accept 或 next() 原样保留">
+</picture>
 
 ## 三步上手
 
@@ -305,7 +310,7 @@ node scripts/check-readme-sync.mjs  # 五语 README 同步门（CI 同样执行�
 pnpm pack                       # 发布用 tarball
 ```
 
-无构建步骤：纯 ESM，`index.mjs` 与 `lib/` 即发布产物。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Python + Pillow），可重复执行：`python scripts/gen-readme-assets.py`，产出 `docs/assets/dsh-translate-flow-{light,dark}.svg` 深浅双版 hero。
+无构建步骤：纯 ESM，`index.mjs` 与 `lib/` 即发布产物。配图由 [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) 程序化生成（Pillow 绘制 hero，手写 SVG 绘制结构图），可重复执行：`python scripts/gen-readme-assets.py`，产出 `docs/assets/dsh-translate-hero-{zh,en}-{light,dark}.webp` 与 `docs/assets/dsh-translate-flow-v5-{light,dark}.svg`。
 
 Topics：`dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `json-repair`, `schema-validation`, `parameter-mapping`, `llm-api`, `tooling`
 

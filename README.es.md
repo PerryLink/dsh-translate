@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-dark.svg">
-  <img src="docs/assets/dsh-translate-flow-light.svg" width="100%" alt="Flujo de datos de dsh-translate: un resultado de herramienta correcto (texto JSON) → extraer bloque → analizar → bucle de reparación (escape / coma final / cierre por truncamiento / relleno con null) → validar contra el esquema → accept o next(); /translate asigna 13 parámetros canónicos a 11 proveedores; la auditoría translate/fix solo registra recuentos y marcas">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-hero-en-dark.webp">
+  <img src="docs/assets/dsh-translate-hero-en-light.webp" width="100%" alt="Banner de dsh-translate: a la izquierda el título y la propuesta de valor; a la derecha, la retícula de 13 parámetros × 11 proveedores y la tarjeta de reparación determinista de JSON">
 </picture>
 
 # dsh-translate
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-translate
 `dsh-translate` hace dos cosas independientes. La primera es la **traducción de parámetros entre proveedores**: parámetros canónicos como `temperature`, `top_p`, `max_tokens`, `stop` y `system` se asignan a los nombres de campo reales de 11 proveedores (OpenAI, ERNIE, Qwen, Anthropic, Google, DeepSeek, Mistral, Cohere, xAI, Groq, Azure); consulta una correspondencia con `/translate openai ernie max_tokens` o convierte una petición estándar completa con `transformRequest` de `lib/rosetta.mjs`. La segunda es la **reparación determinista de JSON**: cuando un resultado de herramienta correcto lleva JSON roto como texto, el listener de `tools/post-execute` extrae el bloque, analiza y aplica cuatro estrategias de texto hasta que la carga pasa la validación del esquema; si no se puede reparar, el valor original sigue su curso y nunca se inventa un dato.
 
 El "translate" del nombre es una tabla de correspondencia de parámetros, no traducción automática. Host puro, ESM puro, sin paso de compilación: `index.mjs` y `lib/` son el artefacto publicado.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-translate-flow-v5-light.svg" width="100%" alt="Estructura de dsh-translate: arriba, la cara de comando /translate lee la tabla 13 × 11 y devuelve una correspondencia; abajo, la máquina de estados de reparación de tools/post-execute y fix_json — puerta de reclamación, extracción y análisis, bucle de estrategias ≤ maxSteps, relleno null de campos obligatorios, validación del subconjunto de esquema y, al final, accept o next() conservando el original">
+</picture>
 
 ## Instalación en tres pasos
 
@@ -305,7 +310,7 @@ node scripts/check-readme-sync.mjs  # puerta de sincronización de los cinco REA
 pnpm pack                       # el tarball publicado
 ```
 
-Sin paso de compilación: ESM puro, `index.mjs` y `lib/` son el artefacto publicado. Las imágenes hero se generan programáticamente con [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) y se pueden regenerar: `python scripts/gen-readme-assets.py` escribe el par claro/oscuro `docs/assets/dsh-translate-flow-{light,dark}.svg`.
+Sin paso de compilación: ESM puro, `index.mjs` y `lib/` son el artefacto publicado. Las imágenes se generan con [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Pillow para los heroes, SVG escrito a mano para el diagrama) y se pueden regenerar: `python scripts/gen-readme-assets.py` escribe `docs/assets/dsh-translate-hero-{zh,en}-{light,dark}.webp` y `docs/assets/dsh-translate-flow-v5-{light,dark}.svg`.
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `json-repair`, `schema-validation`, `parameter-mapping`, `llm-api`, `tooling`
 

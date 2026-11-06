@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-dark.svg">
-  <img src="docs/assets/dsh-translate-flow-light.svg" width="100%" alt="dsh-translate data flow: a successful tool result (JSON text) → extract fence → parse → repair loop (escape / trailing comma / truncation close / null fill) → schema validate → accept or next(); /translate maps 13 canonical params across 11 vendors; the translate/fix audit records counts and flags only">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-hero-en-dark.webp">
+  <img src="docs/assets/dsh-translate-hero-en-light.webp" width="100%" alt="dsh-translate banner: title and value statement on the left; on the right, the 13-parameter × 11-vendor mapping lattice and a deterministic JSON repair card">
 </picture>
 
 # dsh-translate
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-translate
 `dsh-translate` does two independent things. The first is **vendor parameter translation**: canonical parameters such as `temperature`, `top_p`, `max_tokens`, `stop`, and `system` are mapped onto the real field names of 11 vendors (OpenAI, ERNIE, Qwen, Anthropic, Google, DeepSeek, Mistral, Cohere, xAI, Groq, Azure) — look up one mapping with `/translate openai ernie max_tokens`, or convert a whole standard request through `transformRequest` in `lib/rosetta.mjs`. The second is **deterministic JSON repair**: when a successful tool result carries broken JSON as a string, the `tools/post-execute` listener extracts the fence, parses, and runs four text strategies until the payload passes schema validation — if it cannot be repaired, the original value passes through untouched and no value is ever invented.
 
 The "translate" in the name is a vendor parameter mapping table, not machine translation. Pure host, pure ESM, no build step: `index.mjs` and `lib/` are the shipped artifacts.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-translate-flow-v5-light.svg" width="100%" alt="dsh-translate structure: the /translate command face reads the 13 × 11 rosetta table and returns a pair mapping; below, the tools/post-execute and fix_json repair state machine — claim gate, fence extraction and parse, a ≤ maxSteps strategy loop, required-field null completion, schema-subset validation, then accept or next() with the original kept">
+</picture>
 
 ## Three-step setup
 
@@ -305,7 +310,7 @@ node scripts/check-readme-sync.mjs  # five-language README sync gate (also in CI
 pnpm pack                       # the published tarball
 ```
 
-No build step: pure ESM, `index.mjs` and `lib/` are the shipped artifacts. The hero diagrams are generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) and can be re-run: `python scripts/gen-readme-assets.py` writes the light/dark pair `docs/assets/dsh-translate-flow-{light,dark}.svg`.
+No build step: pure ESM, `index.mjs` and `lib/` are the shipped artifacts. The artwork is generated programmatically by [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Pillow for the heroes, hand-written SVG for the structure diagram) and can be re-run: `python scripts/gen-readme-assets.py` writes `docs/assets/dsh-translate-hero-{zh,en}-{light,dark}.webp` and `docs/assets/dsh-translate-flow-v5-{light,dark}.svg`.
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `json-repair`, `schema-validation`, `parameter-mapping`, `llm-api`, `tooling`
 

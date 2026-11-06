@@ -1,8 +1,8 @@
 <div align="center">
 
 <picture>
-  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-dark.svg">
-  <img src="docs/assets/dsh-translate-flow-light.svg" width="100%" alt="dsh-translate डेटा प्रवाह: सफल टूल परिणाम (JSON पाठ) → फ़ेंस निकालें → पार्स करें → रिपेयर लूप (एस्केप / ट्रेलिंग कॉमा / ट्रंकेशन क्लोज़र / null भरना) → स्कीमा सत्यापन → accept या next(); /translate 13 कैनोनिकल पैरामीटर को 11 वेंडर पर मैप करता है; translate/fix ऑडिट केवल गिनती और फ़्लैग दर्ज करता है">
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-hero-en-dark.webp">
+  <img src="docs/assets/dsh-translate-hero-en-light.webp" width="100%" alt="dsh-translate बैनर: बाईं ओर शीर्षक और मूल्य-वाक्य; दाईं ओर 13 पैरामीटर × 11 वेंडर की मैपिंग ग्रिड और नियतात्मक JSON रिपेयर कार्ड">
 </picture>
 
 # dsh-translate
@@ -39,6 +39,11 @@ dsh plugin --profile <name> add dsh-translate
 `dsh-translate` दो अलग-अलग काम करता है। पहला है **वेंडर पैरामीटर अनुवाद**: `temperature`, `top_p`, `max_tokens`, `stop`, `system` जैसे कैनोनिकल पैरामीटर 11 वेंडर (OpenAI, ERNIE, Qwen, Anthropic, Google, DeepSeek, Mistral, Cohere, xAI, Groq, Azure) के वास्तविक फ़ील्ड नामों पर मैप होते हैं; `/translate openai ernie max_tokens` से कोई एक मैपिंग देखें, या `lib/rosetta.mjs` के `transformRequest` से पूरा मानक अनुरोध बदलें। दूसरा है **नियतात्मक JSON रिपेयर**: जब कोई सफल टूल परिणाम टूटा हुआ JSON पाठ के रूप में लेकर आता है, तो `tools/post-execute` लिसनर फ़ेंस निकालता है, पार्स करता है और चार पाठ रणनीतियाँ तब तक चलाता है जब तक पेलोड स्कीमा सत्यापन पास न कर ले — ठीक न हो सके तो मूल मान ज्यों का त्यों आगे बढ़ता है और कोई मान कभी गढ़ा नहीं जाता।
 
 नाम का "translate" वेंडर पैरामीटर मैपिंग तालिका है, मशीन अनुवाद नहीं। शुद्ध host, शुद्ध ESM, कोई बिल्ड चरण नहीं: `index.mjs` और `lib/` ही प्रकाशित आर्टिफ़ैक्ट हैं।
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-translate-flow-v5-light.svg" width="100%" alt="dsh-translate संरचना: ऊपर /translate कमांड फ़ेस 13 × 11 तालिका पढ़कर मैपिंग देता है; नीचे tools/post-execute और fix_json की रिपेयर स्टेट मशीन — क्लेम गेट, फ़ेंस निष्कर्षण और पार्स, ≤ maxSteps रणनीति लूप, अनिवार्य फ़ील्ड का null पूरण, स्कीमा सबसेट सत्यापन, और अंत में accept या मूल मान के साथ next()">
+</picture>
 
 ## तीन चरणों में शुरुआत
 
@@ -305,7 +310,7 @@ node scripts/check-readme-sync.mjs  # पाँच-भाषा README सिं
 pnpm pack                       # प्रकाशित tarball
 ```
 
-कोई बिल्ड चरण नहीं: शुद्ध ESM, `index.mjs` और `lib/` ही प्रकाशित आर्टिफ़ैक्ट हैं। हीरो चित्र [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) (Python + Pillow) से प्रोग्रामेटिक रूप से बनते हैं और दोबारा चलाए जा सकते हैं: `python scripts/gen-readme-assets.py` हल्का/गहरा जोड़ा `docs/assets/dsh-translate-flow-{light,dark}.svg` लिखता है।
+कोई बिल्ड चरण नहीं: शुद्ध ESM, `index.mjs` और `lib/` ही प्रकाशित आर्टिफ़ैक्ट हैं। चित्र [`scripts/gen-readme-assets.py`](scripts/gen-readme-assets.py) से बनते हैं (hero के लिए Pillow, संरचना आरेख के लिए हस्तलिखित SVG) और दोबारा चलाए जा सकते हैं: `python scripts/gen-readme-assets.py` `docs/assets/dsh-translate-hero-{zh,en}-{light,dark}.webp` और `docs/assets/dsh-translate-flow-v5-{light,dark}.svg` लिखता है।
 
 Topics: `dsh`, `dsh-plugin`, `deepseek-harness`, `deepseek`, `cordis`, `json-repair`, `schema-validation`, `parameter-mapping`, `llm-api`, `tooling`
 

@@ -1,0 +1,250 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1100" height="660" viewBox="0 0 1100 660" role="img" aria-label="dsh-translate: two independent faces - the /translate rosetta lookup and the tools/post-execute JSON repair state machine">
+<title>dsh-translate structure: parameter rosetta + deterministic JSON repair</title>
+<desc>Lane A: /translate reads the 13-parameter by 11-vendor rosetta table and returns a pair mapping. Lane B: tools/post-execute and fix_json extract a fence, parse, run a bounded strategy loop (escapeRepair, trailingComma, truncationClosure), complete required fields with null, validate against the supported schema subset, then accept a repaired value or call next() and keep the original.</desc>
+<defs>
+<linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#131a2a"/><stop offset="1" stop-color="#0c1016"/></linearGradient>
+<pattern id="dots" width="22" height="22" patternUnits="userSpaceOnUse"><circle cx="1" cy="1" r="1" fill="#8496f5" opacity="0.075"/></pattern>
+<filter id="soft" x="-20%" y="-30%" width="140%" height="170%"><feDropShadow dx="0" dy="3" stdDeviation="6" flood-color="#1b2140" flood-opacity="0.10"/></filter>
+<marker id="arw" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#a7b0c5"/></marker>
+<marker id="arw-g" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#3fb950"/></marker>
+<marker id="arw-a" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto"><path d="M0 0 L8 4 L0 8 z" fill="#8496f5"/></marker>
+</defs>
+<rect width="1100" height="660" rx="22" fill="url(#bg)"/>
+<rect width="1100" height="660" rx="22" fill="url(#dots)"/>
+<text x="56" y="56" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="30" font-weight="700">dsh-translate</text>
+<text x="56" y="82" fill="#a7b0c5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14">index.mjs · inject: commands + tools · pure host</text>
+<text x="1044" y="56" fill="#a7b0c5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14" text-anchor="end">no network · no model call · no build step</text>
+<line x1="56" y1="100" x2="1044" y2="100" stroke="#2c3852" stroke-width="1"/>
+<circle cx="68" cy="122" r="11" fill="#222b45"/>
+<text x="68" y="126" fill="#8496f5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="13" font-weight="700" text-anchor="middle">A</text>
+<text x="90" y="127" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700" letter-spacing="0.4">COMMAND FACE · /translate</text>
+<text x="1044" y="127" fill="#a7b0c5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14" text-anchor="end">lib/rosetta.mjs · pure lookup</text>
+<rect x="56" y="142" width="254" height="124" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="338" y="142" width="374" height="124" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="738" y="142" width="306" height="124" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<path d="M312 204 H330" fill="none" stroke="#a7b0c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw)"/>
+<path d="M714 204 H732" fill="none" stroke="#a7b0c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw)"/>
+<text x="74" y="168" fill="#8496f5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="15" font-weight="700">/translate</text>
+<text x="74" y="196" fill="#eef1f8" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="15">openai ernie max_tokens</text>
+<text x="74" y="222" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">from · to · [param]</text>
+<text x="74" y="246" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">vendors · params</text>
+<text x="358" y="166" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700">rosetta table</text>
+<text x="694" y="166" fill="#a7b0c5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="13" text-anchor="end">13 × 11</text>
+<rect x="358" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="176" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="176" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="183" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="183" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="190" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="190" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="197" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="197" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="204" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="204" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="365" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="379" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="386" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="393" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="400" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="407" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="414" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="421" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="428" y="211" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="358" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="218" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="218" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="225" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="225" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="232" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="232" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="239" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="239" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="246" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="246" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="253" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="253" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="358" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="365" y="260" width="4" height="4" rx="1" fill="#8496f5" opacity="1"/>
+<rect x="372" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="379" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="386" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="393" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="400" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="407" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="414" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="421" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="428" y="260" width="4" height="4" rx="1" fill="#2c3852" opacity="0.9"/>
+<rect x="363" y="209" width="8" height="8" rx="2" fill="none" stroke="#8496f5" stroke-width="1"/>
+<text x="450" y="198" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">11 vendors →</text>
+<text x="450" y="220" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">13 params ↓</text>
+<text x="450" y="244" fill="#7c87a0" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">one cell = one field</text>
+<text x="756" y="168" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700">pair view</text>
+<text x="756" y="194" fill="#eef1f8" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14">openai (OpenAI) → ernie</text>
+<text x="756" y="220" fill="#eef1f8" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="15" font-weight="700">max_tokens</text>
+<text x="756" y="242" fill="#8496f5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14">→ max_output_tokens</text>
+<text x="56" y="290" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">pure lookup · zero model calls · transformRequest() converts a whole standard request</text>
+<text x="1044" y="290" fill="#7c87a0" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" text-anchor="end">no state · no side effects</text>
+<circle cx="68" cy="312" r="11" fill="#222b45"/>
+<text x="68" y="316" fill="#8496f5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="13" font-weight="700" text-anchor="middle">B</text>
+<text x="90" y="318" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700" letter-spacing="0.3">TOOL-RESULT FACE · tools/post-execute + fix_json</text>
+<text x="1044" y="318" fill="#a7b0c5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14" text-anchor="end">lib/fix.mjs · deterministic</text>
+<rect x="56" y="334" width="218" height="92" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="298" y="334" width="224" height="92" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="546" y="334" width="224" height="92" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="794" y="334" width="250" height="92" rx="18" fill="#1a2233" stroke="#8496f5" stroke-width="1" filter="url(#soft)" stroke-dasharray="5 4"/>
+<path d="M274 380 H292" fill="none" stroke="#a7b0c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw)"/>
+<path d="M522 380 H540" fill="none" stroke="#a7b0c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw)"/>
+<text x="74" y="356" fill="#8496f5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700" letter-spacing="1">INPUT</text>
+<text x="74" y="381" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="17" font-weight="700">success result</text>
+<text x="74" y="402" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">value: string (JSON)</text>
+<text x="74" y="421" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">fix_json: shared core</text>
+<text x="316" y="356" fill="#8496f5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700" letter-spacing="1">CLAIM GATE</text>
+<text x="504" y="356" fill="#f0b45f" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" text-anchor="end">no → next()</text>
+<text x="316" y="381" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="17" font-weight="700">claims the result?</text>
+<text x="316" y="402" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">post-execute only</text>
+<text x="316" y="421" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">string/json root</text>
+<text x="564" y="356" fill="#8496f5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700" letter-spacing="1">PARSE</text>
+<text x="752" y="356" fill="#3fb950" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" text-anchor="end">valid → next()</text>
+<text x="564" y="381" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="17" font-weight="700">extract · parse</text>
+<text x="564" y="402" fill="#a7b0c5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14">looksLikeJsonText()</text>
+<text x="564" y="421" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">fence → parse</text>
+<text x="812" y="356" fill="#8496f5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700" letter-spacing="0.8">REGISTRY BOUNDARY</text>
+<text x="812" y="381" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">post-execute sees only</text>
+<text x="812" y="402" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">successful string values</text>
+<text x="812" y="421" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">failures stay failures</text>
+<path d="M658 426 V436 H460 V444" fill="none" stroke="#a7b0c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw)"/>
+<rect x="56" y="448" width="212" height="118" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="300" y="448" width="320" height="118" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="652" y="448" width="180" height="54" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="652" y="512" width="180" height="54" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="860" y="448" width="184" height="54" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<rect x="860" y="512" width="184" height="54" rx="18" fill="#1a2233" stroke="#2c3852" stroke-width="1" filter="url(#soft)"/>
+<text x="74" y="470" fill="#8496f5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700" letter-spacing="0.6">AUDIT · SIDE CHANNEL</text>
+<text x="74" y="494" fill="#eef1f8" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14" font-weight="700">translate/fix</text>
+<text x="74" y="516" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">tool · call · flags</text>
+<text x="74" y="538" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">counts, never payload</text>
+<text x="74" y="558" fill="#7c87a0" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">log-only · cannot block</text>
+<text x="318" y="472" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="17" font-weight="700">repair loop</text>
+<text x="602" y="472" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" text-anchor="end">≤ maxSteps (8)</text>
+<rect x="318" y="486" width="284" height="23" rx="8" fill="#222b45"/>
+<rect x="318" y="513" width="284" height="23" rx="8" fill="#222b45"/>
+<rect x="318" y="540" width="284" height="23" rx="8" fill="#222b45"/>
+<text x="330" y="502" fill="#eef1f8" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14">escapeRepair</text>
+<text x="330" y="529" fill="#eef1f8" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14">trailingComma</text>
+<text x="330" y="556" fill="#eef1f8" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14">truncationClosure</text>
+<text x="670" y="470" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700">fieldCompletion</text>
+<text x="670" y="490" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">required → null</text>
+<text x="670" y="534" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" font-weight="700">schema validate</text>
+<text x="670" y="554" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">subset only</text>
+<text x="878" y="470" fill="#3fb950" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="15" font-weight="700">accept</text>
+<text x="878" y="490" fill="#a7b0c5" font-family="ui-monospace,SFMono-Regular,'Cascadia Mono',Consolas,'Liberation Mono',monospace" font-size="14">{ kind, value }</text>
+<text x="878" y="534" fill="#eef1f8" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="15" font-weight="700">next()</text>
+<text x="878" y="554" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">original kept</text>
+<path d="M620 507 H636 V475 H648" fill="none" stroke="#a7b0c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw)"/>
+<path d="M742 502 V508" fill="none" stroke="#a7b0c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw)"/>
+<path d="M832 539 H844" fill="none" stroke="#a7b0c5" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw)"/>
+<path d="M844 539 V475 H856" fill="none" stroke="#3fb950" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw-g)"/>
+<path d="M844 539 H856" fill="none" stroke="#3fb950" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" marker-end="url(#arw-g)"/>
+<line x1="56" y1="600" x2="1044" y2="600" stroke="#2c3852" stroke-width="1"/>
+<text x="56" y="626" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14">no invented data · null is a placeholder</text>
+<text x="1044" y="626" fill="#a7b0c5" font-family="ui-sans-serif,system-ui,-apple-system,'Segoe UI','Noto Sans',sans-serif" font-size="14" text-anchor="end">accept is re-validated · next() keeps the original</text>
+</svg>
