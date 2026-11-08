@@ -80,7 +80,7 @@ Example: force Japanese and protect internal product names:
 
 ```sh
 pnpm install
-pnpm test        # 20 cases: masking/restore, placeholder checks, batching, route resolution, jsdom DOM behaviour, descriptor parity
+pnpm test        # 21 cases: masking/restore, placeholder checks, batching, route resolution, jsdom DOM behaviour, descriptor parity
 pnpm run lint
 ```
 

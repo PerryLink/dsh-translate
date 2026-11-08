@@ -80,7 +80,7 @@ dsh plugin --profile <name> add dsh-translate
 
 ```sh
 pnpm install
-pnpm test        # 20 个用例：遮罩/还原、占位符校验、批处理、路由解析、jsdom DOM 行为、两端 descriptor 一致性
+pnpm test        # 21 个用例：遮罩/还原、占位符校验、批处理、路由解析、jsdom DOM 行为、两端 descriptor 一致性
 pnpm run lint
 ```
 
