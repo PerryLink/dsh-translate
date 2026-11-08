@@ -1,0 +1,54 @@
+name: Bug report
+description: Something in dsh-translate does not work as documented
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for the report. Please do not paste credentials, tokens, or real personal data.
+        For a mistranslation, include the original text, the translated output, the target language,
+        and whether the span contained code, paths, commands or identifiers.
+  - type: input
+    id: version
+    attributes:
+      label: dsh-translate version
+      placeholder: 0.3.1
+    validations:
+      required: true
+  - type: input
+    id: host
+    attributes:
+      label: DSH host version
+      placeholder: 0.2.2-rc.1
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: OS / Node / browser
+      placeholder: Windows 11, Node 24.9, Chrome 156
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Steps to reproduce
+      placeholder: |
+        1. Open a session with a model route
+        2. Click 译
+        3. ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behaviour
+    validations:
+      required: true
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behaviour
+      description: Console errors, screenshots, and the failing segment if you can share it.
+    validations:
+      required: true
