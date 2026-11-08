@@ -11,6 +11,8 @@ DeepSeek Harness 的整页翻译插件：浏览器半边遍历当前页面上的
 > 要保留原功能请安装 `dsh-param-repair` 并移除本行；旧配置键（`repair.*`、`rosettaDataPath`）在新插件里会被忽略，
 > 不会导致 profile 加载失败。
 
+[English](README.en.md) · [简体中文](README.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
+
 ## 翻什么，不翻什么
 
 | 会翻译 | 原样保留 |

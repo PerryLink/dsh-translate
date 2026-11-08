@@ -12,6 +12,8 @@ Display-only by design: the session log, the workspace and the DSH config are ne
 > 0.2.x and need that behaviour, install `dsh-param-repair` and remove this row; old config keys
 > (`repair.*`, `rosettaDataPath`) are ignored by the new plugin and do not fail the profile.
 
+[English](README.en.md) · [简体中文](README.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
+
 ## What is translated
 
 | Translated | Kept verbatim |

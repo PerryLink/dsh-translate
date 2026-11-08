@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.2] - 2026-11-08
+
+### Added
+
+- Five-language READMEs: the Spanish, Brazilian Portuguese and Hindi editions are full translations of the
+  English source, and every edition now carries the language switcher. No runtime change.
+
 ## [0.3.1] - 2026-11-08
 
 ### Changed
