@@ -6,6 +6,11 @@ DeepSeek Harness 的整页翻译插件：浏览器半边遍历当前页面上的
 
 只改显示层：**不写会话日志、不改工作区文件、不把译文落盘**。会话记录里永远是模型真正说过的话。
 
+> **0.3.0 起，`dsh-translate` 是整页翻译插件。** 原来的「厂商参数映射 + 确定性 JSON 修复」已改名为
+> [`dsh-param-repair`](https://github.com/PerryLink/dsh-param-repair)（1.0.0）。如果你是从 0.2.x 升上来的，
+> 要保留原功能请安装 `dsh-param-repair` 并移除本行；旧配置键（`repair.*`、`rosettaDataPath`）在新插件里会被忽略，
+> 不会导致 profile 加载失败。
+
 ## 翻什么，不翻什么
 
 | 会翻译 | 原样保留 |

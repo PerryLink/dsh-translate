@@ -6,6 +6,12 @@ An end-to-end translator for DeepSeek Harness. The browser half walks the visibl
 
 Display-only by design: the session log, the workspace and the DSH config are never written. The transcript keeps exactly what the model said.
 
+> **Since 0.3.0, `dsh-translate` is the full-page translator.** The former "vendor parameter
+> mapping + deterministic JSON repair" plugin is now
+> [`dsh-param-repair`](https://github.com/PerryLink/dsh-param-repair) (1.0.0). If you upgraded from
+> 0.2.x and need that behaviour, install `dsh-param-repair` and remove this row; old config keys
+> (`repair.*`, `rosettaDataPath`) are ignored by the new plugin and do not fail the profile.
+
 ## What is translated
 
 | Translated | Kept verbatim |

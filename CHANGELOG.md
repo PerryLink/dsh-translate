@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.3.1] - 2026-11-08
+
+### Changed
+
+- Document the 0.2.x migration explicitly in both READMEs: `dsh-translate` 0.3.0+ is the full-page translator;
+  the former vendor-parameter + JSON-repair plugin is `dsh-param-repair`, and old config keys are ignored
+  rather than rejected.
+
+### Fixed
+
+- README test count matches the repository again (21 cases).
 ## [0.3.0] - 2026-11-08
 
 ### Added

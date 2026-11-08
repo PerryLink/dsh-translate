@@ -1,0 +1,72 @@
+name: Release
+
+on:
+  workflow_dispatch:
+  push:
+    tags: ['v*']
+
+jobs:
+  publish:
+    if: startsWith(github.ref, 'refs/tags/v')
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      id-token: write
+    steps:
+      - uses: actions/checkout@v7
+
+      - uses: pnpm/action-setup@v6
+        with:
+          version: 11.7.0
+
+      - uses: actions/setup-node@v7
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - name: Install
+        run: pnpm install --frozen-lockfile
+
+      - name: Gate
+        run: |
+          pnpm test
+          pnpm run lint
+          pnpm run verify:self-contained
+
+      - name: Verify the tag names this version
+        run: |
+          VERSION="${GITHUB_REF_NAME#v}"
+          ACTUAL="$(node -p "require('./package.json').version")"
+          test "$VERSION" = "$ACTUAL" || { echo "tag $VERSION != package.json $ACTUAL"; exit 1; }
+
+      - name: Upgrade npm for trusted publishing
+        run: |
+          npm install -g npm@^11.5.1
+          echo "npm: $(npm --version)"
+          if [ -n "${ACTIONS_ID_TOKEN_REQUEST_TOKEN:-}" ]; then echo "OIDC request TOKEN: present"; else echo "OIDC request TOKEN: MISSING"; fi
+
+      - name: Publish to npm (OIDC trusted publishing)
+        run: |
+          version="$(node -p "require('./package.json').version")"
+          if npm view "dsh-translate@${version}" version >/dev/null 2>&1; then
+            echo "dsh-translate@${version} is already published; skipping npm publish"
+            exit 0
+          fi
+          npm publish --access public --provenance
+
+  release:
+    needs: publish
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v7
+      - name: Release
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if gh release view "${{ github.ref_name }}" >/dev/null 2>&1; then
+            echo "release ${{ github.ref_name }} already exists; skipping"
+            exit 0
+          fi
+          gh release create "${{ github.ref_name }}" --title "${{ github.ref_name }}" --generate-notes
