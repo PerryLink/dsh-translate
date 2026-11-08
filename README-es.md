@@ -2,7 +2,7 @@
 
 **Traduce toda la interfaz a tu idioma — con la ruta de modelo de tu propio DSH, y sin tocar código, rutas, comandos ni nombres de producto.**
 
-Un traductor de extremo a extremo para DeepSeek Harness. La mitad del navegador recorre la página visible, enmascara cada fragmento que debe permanecer literal (bloques de código y código en línea, rutas de archivo, comandos de shell, URL, identificadores, versiones, hashes, números, nombres de producto) en marcadores `⟦n⟧`, y envía la prosa restante a la mitad del host. El host traduce con **la ruta de modelo que tu sesión actual ya usa**, el navegador restaura los marcadores y escribe el resultado de vuelta en los mismos nodos de texto. Los originales permanecen en memoria; un clic en **Original** restaura la página.
+Un traductor de extremo a extremo para DeepSeek Harness. La mitad del navegador recorre el texto de la página, enmascara cada fragmento que debe permanecer literal (bloques de código y código en línea, rutas de archivo, comandos de shell, URL, identificadores, versiones, hashes, números, nombres de producto) en marcadores `⟦n⟧`, y envía la prosa restante a la mitad del host. El host traduce con **la ruta de modelo que tu sesión actual ya usa**, el navegador restaura los marcadores y escribe el resultado de vuelta en los mismos nodos de texto. Los originales permanecen en memoria; un clic en **Original** restaura la página.
 
 Solo de visualización por diseño: el registro de la sesión, el espacio de trabajo y la configuración de DSH nunca se escriben. La transcripción conserva exactamente lo que dijo el modelo.
 
@@ -20,7 +20,7 @@ Solo de visualización por diseño: el registro de la sesión, el espacio de tra
 | Prosa del asistente, resúmenes de razonamiento, prosa de la salida de herramientas | Código delimitado y en línea (`code` / `pre`) |
 | Encabezados de Markdown, listas, tablas, etiquetas de enlace | Rutas de archivo, globs, comandos y flags, URL, correos electrónicos |
 | Botones, etiquetas, textos de configuración | Claves JSON, variables de entorno, identificadores `dsh-*` / `snake_case` / `camelCase` |
-| Texto visible de otros plugins | Versiones, hashes, números simples y los marcadores `⟦n⟧` |
+| Texto de otros plugins (incluidos los popovers ocultos) | Versiones, hashes, números simples y los marcadores `⟦n⟧` |
 | — | Términos de producto: DeepSeek Harness, Cordis, npm, GitHub, Gitee, GitCode, Phocinae, PerryLink, … |
 
 Un nodo de texto sin prosa restante (por ejemplo, una ruta o un fragmento de código) se omite. Si el modelo pierde, renumera o inventa un marcador, ese segmento conserva su texto original en lugar de escribir una cadena a medio enmascarar en la página.
@@ -69,7 +69,7 @@ Ejemplo: forzar japonés y proteger nombres de producto internos:
 
 ## Coste y privacidad
 
-- **Bajo demanda, solo texto visible**: nada se ejecuta en segundo plano hasta que se hace clic en el control; desactivarlo detiene el trabajo.
+- **Bajo demanda, solo el texto de la página (los popovers ocultos se traducen antes de abrirse)**: nada se ejecuta en segundo plano hasta que se hace clic en el control; desactivarlo detiene el trabajo.
 - **Caché**: el mismo segmento de origen (mismo idioma de destino) se traduce una vez y se almacena en caché en el `localStorage` del navegador (máximo 600 entradas); borrar los datos del sitio la vacía.
 - **Qué sale de la máquina**: solo la prosa con los fragmentos protegidos enmascarados, enviada al proveedor que configuraste; las rutas, el código, los comandos y los identificadores con forma de clave no se envían como texto traducible.
 - **Sin persistencia**: las traducciones viven en el DOM y en la caché del navegador; el registro de la sesión, el espacio de trabajo y la configuración de DSH quedan intactos.
@@ -80,7 +80,7 @@ Ejemplo: forzar japonés y proteger nombres de producto internos:
 - La traducción ocurre en la capa de renderizado. Cuando React vuelve a renderizar un nodo, escribe el original de vuelta; el MutationObserver vuelve a aplicar la traducción en caché sin otra llamada al modelo. Es posible un breve parpadeo.
 - El texto en streaming sigue cambiando, así que el plugin traduce tras un periodo de calma de 350 ms; las respuestas largas en streaming reciben su traducción un poco más tarde.
 - No hay OCR para imágenes, Canvas ni vistas previas de PDF.
-- Los elementos ocultos (popovers con `display:none`) no se recorren; el observer los recoge cuando se vuelven visibles.
+- Los elementos ocultos (popovers con `display:none`) también se recorren, así que un popover se abre ya traducido sin otra llamada al modelo.
 - La propia GUI ya incluye ocho idiomas (en / zh / ja / es / fr / de / ru / pt); este plugin traduce el **contenido** y el texto en inglés de plugins de terceros, y no reemplaza el sistema de idiomas integrado.
 
 ## Desarrollo

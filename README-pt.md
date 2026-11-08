@@ -70,7 +70,7 @@ Exemplo: forçar japonês e proteger nomes internos de produtos:
 
 ## Custo e privacidade
 
-- **Sob demanda, apenas texto visível**: nada roda em segundo plano até o controle ser clicado; desligá-lo interrompe o trabalho.
+- **Sob demanda, apenas o texto da página (popovers ocultos são traduzidos antes de abrir)**: nada roda em segundo plano até o controle ser clicado; desligá-lo interrompe o trabalho.
 - **Cache**: o mesmo segmento de origem (mesmo idioma de destino) é traduzido uma vez e armazenado em cache no `localStorage` do navegador (no máximo 600 entradas); limpar os dados do site o apaga.
 - **O que sai da máquina**: apenas prosa com os trechos protegidos mascarados, enviada ao provedor que você configurou; caminhos, código, comandos e identificadores com formato de chave não são enviados como texto traduzível.
 - **Sem persistência**: as traduções vivem no DOM e no cache do navegador; o log da sessão, o espaço de trabalho e a configuração do DSH permanecem intactos.
@@ -81,7 +81,7 @@ Exemplo: forçar japonês e proteger nomes internos de produtos:
 - A tradução acontece na camada de renderização. Quando o React re-renderiza um nó, ele grava o original de volta; o MutationObserver reaplica a tradução em cache sem outra chamada ao modelo. Uma breve oscilação visual é possível.
 - O texto em streaming continua mudando, então o plugin traduz após 350 ms de silêncio; respostas longas em streaming recebem a tradução um pouco mais tarde.
 - Sem OCR para imagens, Canvas ou visualizações de PDF.
-- Elementos ocultos (popovers com `display:none`) não são percorridos; o observer os captura quando se tornam visíveis.
+- Elementos ocultos (popovers com `display:none`) também são percorridos, então um popover abre já traduzido sem outra chamada ao modelo.
 - A própria GUI já traz oito locales (en / zh / ja / es / fr / de / ru / pt); este plugin traduz o **conteúdo** e os textos em inglês de plugins de terceiros, e não substitui o sistema de locales embutido.
 
 ## Desenvolvimento
