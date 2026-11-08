@@ -1,0 +1,87 @@
+{
+  "name": "dsh-translate",
+  "version": "0.3.0",
+  "description": "Full-page translation for DeepSeek Harness: translate the rendered web GUI into your language with your own model route, preserving code, paths, commands, identifiers, numbers and product names. Display-only; the session log is never touched.",
+  "keywords": [
+    "dsh",
+    "dsh-plugin",
+    "deepseek-harness",
+    "translation",
+    "i18n",
+    "dom",
+    "client-plugin",
+    "model-route"
+  ],
+  "license": "Apache-2.0",
+  "author": "PerryLink",
+  "private": false,
+  "type": "module",
+  "main": "./index.mjs",
+  "exports": {
+    ".": {
+      "default": "./index.mjs"
+    },
+    "./typert": {
+      "default": "./typert.host.mjs"
+    },
+    "./client": {
+      "default": "./client/index.js"
+    },
+    "./cordis.patch.yml": "./cordis.patch.yml",
+    "./package.json": "./package.json"
+  },
+  "files": [
+    "index.mjs",
+    "typert.host.mjs",
+    "lib",
+    "client",
+    "cordis.patch.yml",
+    "README.md",
+    "README.en.md",
+    "CHANGELOG.md",
+    "SECURITY.md",
+    "LICENSE"
+  ],
+  "dsh": {
+    "manifestVersion": 1,
+    "bundle": {
+      "patch": "./cordis.patch.yml"
+    },
+    "client": {
+      "platform": "web",
+      "inject": [
+        "@deepseek-ai/dsh-api-remotes",
+        "@deepseek-ai/dsh-client-locale"
+      ]
+    }
+  },
+  "dependencies": {
+    "zod": "4.4.3"
+  },
+  "peerDependencies": {
+    "@deepseek-ai/cordis": "^4.0.5-alpha.1",
+    "@deepseek-ai/dsh-llm": ">=0.2.1-0 <0.3.0",
+    "@deepseek-ai/dsh-session": ">=0.2.1-0 <0.3.0",
+    "@deepseek-ai/dsh-typert-protocol": ">=0.2.1-0 <0.3.0",
+    "@deepseek-ai/schemastery": "^3.18.5-alpha.1"
+  },
+  "devDependencies": {
+    "@deepseek-ai/cordis": "^4.0.5-alpha.1",
+    "@deepseek-ai/dsh-llm": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-session": "0.2.1-rc.2",
+    "@deepseek-ai/dsh-typert-protocol": "0.2.1-rc.2",
+    "@deepseek-ai/schemastery": "^3.18.5-alpha.1",
+    "jsdom": "^30.1.3",
+    "oxlint": "^0.18.1"
+  },
+  "engines": {
+    "node": "^22.19.0 || >=24.0.0",
+    "dsh": ">=0.2.1-0 <0.3.0"
+  },
+  "scripts": {
+    "test": "node --test \"test/**/*.test.mjs\"",
+    "lint": "oxlint",
+    "check:lockfile": "node scripts/check-lockfile-drift.mjs",
+    "verify:self-contained": "node scripts/verify-self-contained.mjs"
+  }
+}

@@ -1,0 +1,21 @@
+# dsh-translate bundle patch: mount the full-page translator.
+#
+# The browser half owns the DOM walk and the on/off control; this row only
+# starts the host service that resolves the model route and translates masked
+# segments. Every key below is a Config field (Schemastery); invalid values
+# fail the profile load loudly.
+- insert:
+    - id: dsh-translate
+      name: dsh-translate
+      config:
+        enabled: true
+        # Empty follows the web UI locale; set e.g. zh, ja, de to force one.
+        targetLang: ''
+        # Optional explicit route. Both or neither; empty inherits the newest
+        # request/header recorded by a live session.
+        provider: ''
+        model: ''
+        maxSegments: 40
+        maxChars: 6000
+        timeoutMs: 60000
+        glossary: []
