@@ -1,6 +1,6 @@
 {
   "name": "dsh-translate",
-  "version": "0.3.2",
+  "version": "0.3.3",
   "description": "Full-page translation for DeepSeek Harness: translate the rendered web GUI into your language with your own model route, preserving code, paths, commands, identifiers, numbers and product names. Display-only; the session log is never touched.",
   "keywords": [
     "dsh",

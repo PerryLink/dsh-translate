@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.3.3] - 2026-11-09
+
+### Fixed
+
+- All five README editions now state that hidden elements are translated when they become visible,
+  matching the implementation (repo `57de189`). No runtime change.
+
 ## [0.3.2] - 2026-11-08
 
 ### Added
