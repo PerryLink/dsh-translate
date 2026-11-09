@@ -29,6 +29,28 @@ test('keeps numbers, versions and identifiers', () => {
   assert.equal(restoreText(result.masked, result.slots), source)
 })
 
+test('protects a command with arguments before the bare product term', () => {
+  const source = 'Run npm test before you commit.'
+  const result = protectText(source, [])
+  assert.ok(result !== null)
+  assert.deepEqual(result.slots, ['npm test'])
+  assert.equal(restoreText(result.masked, result.slots), source)
+})
+
+test('does not swallow ordinary prose after a command word', () => {
+  const result = protectText('git is a tool, not a command.', [])
+  assert.ok(result !== null)
+  assert.deepEqual(result.slots, ['git'])
+})
+
+test('protects a curl command with its URL', () => {
+  const source = 'Fetch it with curl https://example.com/x now.'
+  const result = protectText(source, [])
+  assert.ok(result !== null)
+  assert.deepEqual(result.slots, ['curl https://example.com/x'])
+  assert.equal(restoreText(result.masked, result.slots), source)
+})
+
 test('returns null when there is no prose left', () => {
   assert.equal(protectText('`npm test`', []), null)
   assert.equal(protectText('/only/a/path', []), null)

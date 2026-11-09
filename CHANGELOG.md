@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.3.4] - 2026-11-09
+
+### Fixed
+
+- Command masking now protects a command with a known subcommand (`npm test`, `git status`,
+  `curl https://...`) before the bare product-term rule, without swallowing ordinary prose after
+  a command word. Adds regression tests.
+
 ## [0.3.3] - 2026-11-09
 
 ### Fixed

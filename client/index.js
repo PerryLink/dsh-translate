@@ -107,7 +107,8 @@ window.__ModuleLoader__.load({
     // Product names are ordinary words to a model, so they are matched as literal
     // alternatives before the generic rules.
     var PRODUCT_TERMS = [
-      'DeepSeek Harness', 'DeepSeek', 'Cordis', 'npm', 'pnpm', 'GitHub', 'Gitee',
+      'DeepSeek Harness', 'DeepSeek', 'Cordis', 'npm', 'pnpm', 'yarn', 'bun', 'npx',
+      'node', 'git', 'docker', 'kubectl', 'curl', 'GitHub', 'Gitee',
       'GitCode', 'Phocinae', 'PerryLink', 'DSH', 'MCP', 'JSON', 'OTLP', 'SQLite',
     ]
 
@@ -125,7 +126,6 @@ window.__ModuleLoader__.load({
       '\\bv?\\d+(?:\\.\\d+){1,3}(?:[-+][0-9A-Za-z.]+)?\\b',
       '\\b\\d+(?:\\.\\d+)?(?:%|ms|s|m|h|kb|mb|gb|tb|px|k|m|b|d)?\\b',
       '\\b[A-Z][A-Z0-9_]{2,}\\b',
-      '\\b(?:npm|pnpm|npx|yarn|bun|node|git|dsh|docker|kubectl|curl)\\b(?:\\s+(?:-{1,2}[\\w-]+|[\\w./-]+))*',
       '\\b[a-z][a-z0-9]*(?:[_-][a-z0-9]+)+\\b',
       '\\b[a-z]+[A-Z][A-Za-z0-9]*\\b',
     ]
@@ -133,6 +133,18 @@ window.__ModuleLoader__.load({
     function escapeRegExp(text) {
       return String(text).replace(/[.*+?^${}()|[\]\\]/g, '\\$&')
     }
+
+    // A command with a known subcommand must win over the bare product term
+    // (e.g. `npm` would otherwise mask only the binary and leave `test`
+    // translatable). Arguments are limited to flags and path/version-like
+    // tokens so ordinary prose after the command is not swallowed.
+    var COMMAND_WITH_ARGS = [
+      '\\b(?:npm|pnpm|yarn|bun)\\s+(?:run\\s+)?(?:test|build|install|ci|add|remove|exec|start|dev|lint|publish|pack|version|audit|update|why|link|unlink)\\b(?:\\s+(?:-{1,2}[\\w-]+|[\\w.-]*[/:.][\\w./:-]+))*',
+      '\\bgit\\s+(?:status|log|diff|add|commit|push|pull|checkout|switch|branch|merge|rebase|clone|fetch|show|tag|stash|remote|reset|restore)\\b(?:\\s+(?:-{1,2}[\\w-]+|[\\w.-]*[/:.][\\w./:-]+))*',
+      '\\bdocker\\s+(?:run|build|ps|exec|logs|pull|push|compose)\\b(?:\\s+(?:-{1,2}[\\w-]+|[\\w.-]*[/:.][\\w./:-]+))*',
+      '\\bkubectl\\s+(?:get|apply|describe|logs|exec|delete|port-forward)\\b(?:\\s+(?:-{1,2}[\\w-]+|[\\w.-]*[/:.][\\w./:-]+))*',
+      '\\bcurl\\s+(?:-{1,2}[\\w-]+\\s+)*(?:https?://[^\\s]+)',
+    ].join('|')
 
     function buildProtectRegex(glossary) {
       var terms = PRODUCT_TERMS.slice()
@@ -145,7 +157,7 @@ window.__ModuleLoader__.load({
         .filter(function (term, index, all) { return all.indexOf(term) === index })
         .sort(function (a, b) { return b.length - a.length })
         .map(escapeRegExp)
-      var parts = ['(?:' + terms.join('|') + ')'].concat(FIXED_PROTECTED)
+      var parts = ['(?:' + COMMAND_WITH_ARGS + ')', '(?:' + terms.join('|') + ')'].concat(FIXED_PROTECTED)
       return new RegExp(parts.join('|'), 'g')
     }
 
