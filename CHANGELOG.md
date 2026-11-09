@@ -5,6 +5,7 @@
 ### Changed
 
 - Re-release from the 0.3.4 tree to attach SLSA provenance via npm trusted publishing.
+- Added `repository`/`homepage`/`bugs` metadata, required for npm provenance validation.
   No runtime change.
 
 ## [0.3.4] - 2026-11-09

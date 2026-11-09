@@ -86,5 +86,13 @@
     "lint": "oxlint",
     "check:lockfile": "node scripts/check-lockfile-drift.mjs",
     "verify:self-contained": "node scripts/verify-self-contained.mjs"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PerryLink/dsh-translate.git"
+  },
+  "homepage": "https://github.com/PerryLink/dsh-translate#readme",
+  "bugs": {
+    "url": "https://github.com/PerryLink/dsh-translate/issues"
   }
 }
