@@ -1,0 +1,18 @@
+# Nearest-workspace root for this standalone plugin package. This file makes
+# pnpm treat dsh-translate as an independent workspace when the repository is
+# checked out next to (or inside) other pnpm workspaces.
+packages:
+  - .
+
+# The fresh 0.2.2-rc.3 host pins are younger than the global minimum-release-age
+# policy, so the install is only reproducible when they are excluded explicitly.
+minimumReleaseAgeExclude:
+  - '@deepseek-ai/dsh-brand@0.2.2-rc.3'
+  - '@deepseek-ai/dsh-error@0.2.2-rc.3'
+  - '@deepseek-ai/dsh-llm@0.2.2-rc.3'
+  - '@deepseek-ai/dsh-scope@0.2.2-rc.3'
+  - '@deepseek-ai/dsh-session@0.2.2-rc.3'
+  - '@deepseek-ai/dsh-timeout@0.2.2-rc.3'
+  - '@deepseek-ai/dsh-typert-protocol@0.2.2-rc.3'
+  - '@deepseek-ai/dsh-util-crypto@0.2.2-rc.3'
+  - '@deepseek-ai/dsh-util-values@0.2.2-rc.3'
