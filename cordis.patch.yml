@@ -18,4 +18,8 @@
         maxSegments: 40
         maxChars: 6000
         timeoutMs: 60000
+        # Thinking is off for translation batches: a batch is a mechanical
+        # rewrite, and DeepSeek routes default to thinking at effort `high`.
+        # One of off, low, high, max.
+        reasoningEffort: off
         glossary: []

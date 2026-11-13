@@ -55,6 +55,7 @@ Every key is a Schemastery field; an invalid value fails the profile load loudly
 | `maxSegments` | `40` | Segments per model call (1–200) |
 | `maxChars` | `6000` | Characters per model call (200–40000) |
 | `timeoutMs` | `60000` | Per-call deadline (1000–600000) |
+| `reasoningEffort` | `off` | Thinking effort per call: `off`, `low`, `high`, `max`; `off` disables thinking so a translation batch never pays for chain-of-thought |
 | `glossary` | `[]` | Extra terms to keep verbatim |
 
 Example: force Japanese and protect internal product names:

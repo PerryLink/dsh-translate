@@ -15,6 +15,9 @@ export const name = 'dsh-translate'
 /** `sessions` is required to resolve the route; `llm` is looked up lazily so the plugin still loads without one. */
 export const inject = ['sessions']
 
+/** Thinking efforts the host llm service accepts; `'off'` is the only value that disables thinking. */
+const REASONING_EFFORTS = Object.freeze(['off', 'low', 'high', 'max'])
+
 /** Raw plugin config; every field optional, defaults filled by {@link resolveConfig}. */
 export const Config = z.object({
   /** Master switch; false registers nothing at all. */
@@ -31,6 +34,8 @@ export const Config = z.object({
   maxChars: z.number().default(6000),
   /** Per-call deadline in milliseconds. */
   timeoutMs: z.number().default(60000),
+  /** Per-call thinking effort; `off` keeps a translation batch out of thinking mode. */
+  reasoningEffort: z.union(REASONING_EFFORTS).default('off'),
   /** Extra terms that must survive translation verbatim. */
   glossary: z.array(z.string()).default([]),
 })
@@ -39,7 +44,7 @@ export const Config = z.object({
  * Re-judge every default and bound so programmatic mounts fail loud instead of
  * running with hidden values.
  * @param {object | undefined} raw - loader config.
- * @returns {{ enabled: boolean, targetLang: string, provider: string, model: string, maxSegments: number, maxChars: number, timeoutMs: number, glossary: readonly string[] }} frozen config.
+ * @returns {{ enabled: boolean, targetLang: string, provider: string, model: string, maxSegments: number, maxChars: number, timeoutMs: number, reasoningEffort: 'off' | 'low' | 'high' | 'max', glossary: readonly string[] }} frozen config.
  */
 export function resolveConfig(raw) {
   const value = raw ?? {}
@@ -60,9 +65,11 @@ export function resolveConfig(raw) {
   if (!Number.isInteger(maxChars) || maxChars < 200 || maxChars > 40000) fail('config.maxChars must be an integer between 200 and 40000')
   const timeoutMs = value.timeoutMs ?? 60000
   if (!Number.isInteger(timeoutMs) || timeoutMs < 1000 || timeoutMs > 600000) fail('config.timeoutMs must be an integer between 1000 and 600000')
+  const reasoningEffort = value.reasoningEffort ?? 'off'
+  if (!REASONING_EFFORTS.includes(reasoningEffort)) fail(`config.reasoningEffort must be one of ${REASONING_EFFORTS.join(', ')}`)
   const glossary = value.glossary ?? []
   if (!Array.isArray(glossary) || glossary.some((term) => typeof term !== 'string')) fail('config.glossary must be an array of strings')
-  return { enabled, targetLang, provider, model, maxSegments, maxChars, timeoutMs, glossary: Object.freeze(glossary.slice()) }
+  return { enabled, targetLang, provider, model, maxSegments, maxChars, timeoutMs, reasoningEffort, glossary: Object.freeze(glossary.slice()) }
 }
 
 /**

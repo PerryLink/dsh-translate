@@ -67,3 +67,24 @@ test('a stream error fails closed', async () => {
   assert.deepEqual(result.failed, [0])
   assert.match(result.error, /network down/)
 })
+
+test('a batch asks for no thinking by default', async () => {
+  const llm = fakeLlm([['一']])
+  const result = await translateSegments({
+    llm, route: { provider: 'deepseek', model: 'm' }, targetLang: 'zh',
+    segments: ['one'], assembler: fakeAssembler, timeoutMs: 5000,
+  })
+  assert.deepEqual(result.translations, ['一'])
+  assert.equal(llm.calls[0].reasoningEffort, 'off')
+  // `temperature` is ignored while thinking is on, so it must not come back.
+  assert.equal(Object.hasOwn(llm.calls[0], 'temperature'), false)
+})
+
+test('an explicit reasoning effort reaches the request', async () => {
+  const llm = fakeLlm([['一']])
+  await translateSegments({
+    llm, route: { provider: 'deepseek', model: 'm' }, targetLang: 'zh',
+    segments: ['one'], assembler: fakeAssembler, timeoutMs: 5000, reasoningEffort: 'low',
+  })
+  assert.equal(llm.calls[0].reasoningEffort, 'low')
+})

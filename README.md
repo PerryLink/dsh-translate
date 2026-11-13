@@ -54,6 +54,7 @@ dsh plugin --profile <name> add dsh-translate
 | `maxSegments` | `40` | 单次模型调用的段数上限（1–200） |
 | `maxChars` | `6000` | 单次模型调用的字符上限（200–40000） |
 | `timeoutMs` | `60000` | 单次调用超时（1000–600000） |
+| `reasoningEffort` | `off` | 单次调用的思考强度：`off`、`low`、`high`、`max`；`off` 关闭思考，翻译批次不再为思维链付费 |
 | `glossary` | `[]` | 额外要求原样保留的词（产品名、内部系统名等） |
 
 例：强制翻成日文，并把内部系统名加进词表：

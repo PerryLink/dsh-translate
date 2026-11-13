@@ -55,6 +55,7 @@ Cada chave é um campo Schemastery; um valor inválido faz o carregamento do per
 | `maxSegments` | `40` | Segmentos por chamada ao modelo (1–200) |
 | `maxChars` | `6000` | Caracteres por chamada ao modelo (200–40000) |
 | `timeoutMs` | `60000` | Prazo por chamada (1000–600000) |
+| `reasoningEffort` | `off` | Esforço de raciocínio por chamada: `off`, `low`, `high`, `max`; `off` desativa o raciocínio e o lote de tradução não paga a cadeia de pensamento |
 | `glossary` | `[]` | Termos extras a manter literais |
 
 Exemplo: forçar japonês e proteger nomes internos de produtos:

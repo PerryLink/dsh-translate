@@ -54,6 +54,7 @@ Cada clave es un campo de Schemastery; un valor inválido hace fallar la carga d
 | `maxSegments` | `40` | Segmentos por llamada al modelo (1–200) |
 | `maxChars` | `6000` | Caracteres por llamada al modelo (200–40000) |
 | `timeoutMs` | `60000` | Plazo por llamada (1000–600000) |
+| `reasoningEffort` | `off` | Esfuerzo de razonamiento por llamada: `off`, `low`, `high`, `max`; `off` desactiva el razonamiento y el lote de traducción no paga la cadena de pensamiento |
 | `glossary` | `[]` | Términos adicionales que se mantienen literales |
 
 Ejemplo: forzar japonés y proteger nombres de producto internos:
