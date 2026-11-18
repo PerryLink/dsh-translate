@@ -4,7 +4,7 @@
 
 **Traduza a interface inteira para o seu idioma — com a sua própria rota de modelo DSH, e sem tocar em código, caminhos, comandos ou nomes de produtos.**
 
-Um tradutor ponta a ponta para o DeepSeek Harness. A metade do navegador percorre a página visível, mascara todo trecho que deve permanecer literal (blocos de código e código inline, caminhos de arquivo, comandos de shell, URLs, identificadores, versões, hashes, números, nomes de produtos) em placeholders `⟦n⟧`, e envia a prosa restante para a metade do host. O host traduz com **a rota de modelo que a sua sessão atual já usa**, o navegador restaura os placeholders e grava o resultado de volta nos mesmos nós de texto. Os originais permanecem na memória; um clique em **Original** restaura a página.
+Um tradutor ponta a ponta para o DeepSeek Harness. A metade do navegador percorre a página visível, mascara todo trecho que deve permanecer literal (blocos de código e código inline, caminhos de arquivo, comandos de shell, URLs, identificadores, versões, hashes, números, nomes de produtos) em placeholders `dsh-v0.2.2-rc.4`（2026-11-18）；`⟦n⟧`, e envia a prosa restante para a metade do host. O host traduz com **a rota de modelo que a sua sessão atual já usa**, o navegador restaura os placeholders e grava o resultado de volta nos mesmos nós de texto. Os originais permanecem na memória; um clique em **Original** restaura a página.
 
 Apenas exibição por design: o log da sessão, o espaço de trabalho e a configuração do DSH nunca são gravados. O transcript mantém exatamente o que o modelo disse.
 

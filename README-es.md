@@ -4,7 +4,7 @@
 
 **Traduce toda la interfaz a tu idioma — con la ruta de modelo de tu propio DSH, y sin tocar código, rutas, comandos ni nombres de producto.**
 
-Un traductor de extremo a extremo para DeepSeek Harness. La mitad del navegador recorre el texto de la página, enmascara cada fragmento que debe permanecer literal (bloques de código y código en línea, rutas de archivo, comandos de shell, URL, identificadores, versiones, hashes, números, nombres de producto) en marcadores `⟦n⟧`, y envía la prosa restante a la mitad del host. El host traduce con **la ruta de modelo que tu sesión actual ya usa**, el navegador restaura los marcadores y escribe el resultado de vuelta en los mismos nodos de texto. Los originales permanecen en memoria; un clic en **Original** restaura la página.
+Un traductor de extremo a extremo para DeepSeek Harness. La mitad del navegador recorre el texto de la página, enmascara cada fragmento que debe permanecer literal (bloques de código y código en línea, rutas de archivo, comandos de shell, URL, identificadores, versiones, hashes, números, nombres de producto) en marcadores `dsh-v0.2.2-rc.4`（2026-11-18）；`⟦n⟧`, y envía la prosa restante a la mitad del host. El host traduce con **la ruta de modelo que tu sesión actual ya usa**, el navegador restaura los marcadores y escribe el resultado de vuelta en los mismos nodos de texto. Los originales permanecen en memoria; un clic en **Original** restaura la página.
 
 Solo de visualización por diseño: el registro de la sesión, el espacio de trabajo y la configuración de DSH nunca se escriben. La transcripción conserva exactamente lo que dijo el modelo.
 
