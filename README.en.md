@@ -1,3 +1,12 @@
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-hero-en-dark.webp">
+  <img src="docs/assets/dsh-translate-hero-en-light.webp" width="100%" alt="dsh-translate: the full-page translator for DeepSeek Harness — the browser masks code, paths, commands, URLs and product names, the host translates with your own session model route, and a lost placeholder keeps the original segment; the Config defaults (maxSegments 40, maxChars 6000, timeoutMs 60000) are on the right">
+</picture>
+
+</div>
+
 # dsh-translate
 
 > Host compatibility: DeepSeek Harness `dsh-v0.2.2-rc.4` (verified 2026-11-18).
@@ -14,7 +23,7 @@ Display-only by design: the session log, the workspace and the DSH config are ne
 > 0.2.x and need that behaviour, install `dsh-param-repair` and remove this row; old config keys
 > (`repair.*`, `rosettaDataPath`) are ignored by the new plugin and do not fail the profile.
 
-[English](README.en.md) · [简体中文](README.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
+[English](README.en.md) · [简体中文](README.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 ## What is translated
 
@@ -27,6 +36,13 @@ Display-only by design: the session log, the workspace and the DSH config are ne
 | — | Product terms: DeepSeek Harness, Cordis, npm, GitHub, Gitee, GitCode, Phocinae, PerryLink, … |
 
 A text node with no prose left (for example a path or a code span) is skipped. If the model loses, renumbers or invents a placeholder, that segment keeps its original text instead of writing a half-masked string into the page.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-translate-flow-v5-light.svg" width="100%" alt="dsh-translate structure: the browser masks protected spans in the DOM, the host translates batched segments through your own model route, and the browser restores placeholders into the same text nodes; the outputs are the translations, the failed indexes and the status of the route">
+</picture>
+
+*Structure: mask → translate → restore; `translatePage/translate` returns `translations[]`, `failed[]` and the provider and model actually used, while `status` only reports whether a route is resolvable. The token labels inside the diagram are the real method, field and config names, so the same picture serves all five languages.*
 
 ## Install
 
@@ -103,6 +119,10 @@ Layout:
 - `lib/wire.mjs` — the invocation descriptors shared by both faces
 - `typert.host.mjs` — host Typert manifest
 - `client/index.js` — hand-written client bundle: DOM walk, masking, cache, floating control
+
+![dsh-translate test suite: a real pnpm test run — 32 tests pass, 0 fail, in 4.6 s](docs/assets/dsh-translate-demo.gif)
+
+*Animated: the real `pnpm test` run in this checkout on 2026-11-21, replayed through Node's TAP reporter — 32 tests, 0 failures, 4.6 s, no network. The count in the Development snippet above is the suite as it stood when that line was written; this replay is the current output.*
 
 ## License
 

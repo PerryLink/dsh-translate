@@ -1,3 +1,12 @@
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-hero-en-dark.webp">
+  <img src="docs/assets/dsh-translate-hero-en-light.webp" width="100%" alt="dsh-translate: o tradutor de página inteira para o DeepSeek Harness — o navegador mascara código, caminhos, comandos, URLs e nomes de produto, o host traduz com a rota de modelo da sua própria sessão e um placeholder perdido mantém o segmento original; à direita, os padrões de Config (maxSegments 40, maxChars 6000, timeoutMs 60000)">
+</picture>
+
+</div>
+
 # dsh-translate
 
 > Compatibilidade com o host: DeepSeek Harness `dsh-v0.2.2-rc.4` (verificado em 2026-11-18).
@@ -14,7 +23,7 @@ Apenas exibição por design: o log da sessão, o espaço de trabalho e a config
 > 0.2.x e precisa desse comportamento, instale o `dsh-param-repair` e remova esta linha; as chaves de configuração
 > antigas (`repair.*`, `rosettaDataPath`) são ignoradas pelo novo plugin e não fazem o perfil falhar.
 
-[English](README.en.md) · [简体中文](README.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
+[English](README.en.md) · [简体中文](README.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 ## O que é traduzido
 
@@ -27,6 +36,13 @@ Apenas exibição por design: o log da sessão, o espaço de trabalho e a config
 | — | Termos de produto: DeepSeek Harness, Cordis, npm, GitHub, Gitee, GitCode, Phocinae, PerryLink, … |
 
 Um nó de texto sem prosa restante (por exemplo, um caminho ou um trecho de código) é ignorado. Se o modelo perder, renumerar ou inventar um placeholder, esse segmento mantém o texto original em vez de gravar na página uma string parcialmente mascarada.
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-translate-flow-v5-light.svg" width="100%" alt="estrutura do dsh-translate: o navegador mascara os trechos protegidos do DOM, o host traduz os segmentos em lotes pela sua própria rota de modelo e o navegador restaura os placeholders nos mesmos nós de texto; as saídas são as traduções, os índices com falha e o status da rota">
+</picture>
+
+*Estrutura: mascarar → traduzir → restaurar; `translatePage/translate` retorna `translations[]`, `failed[]` e o provider e model realmente usados, enquanto `status` só informa se há uma rota resolvível. Os rótulos do diagrama são os nomes reais de métodos, campos e configuração, então a mesma imagem serve aos cinco idiomas.*
 
 ## Instalação
 
@@ -103,6 +119,10 @@ Estrutura:
 - `lib/wire.mjs` — os descritores de invocação compartilhados pelas duas faces
 - `typert.host.mjs` — manifesto Typert do host
 - `client/index.js` — bundle de cliente escrito à mão: percurso do DOM, mascaramento, cache, controle flutuante
+
+![suíte de testes do dsh-translate: uma execução real de pnpm test — 32 testes aprovados, 0 falhas, em 4,6 s](docs/assets/dsh-translate-demo.gif)
+
+*Animado: a execução real de `pnpm test` neste checkout em 2026-11-21, reproduzida com o reporter TAP do Node — 32 testes, 0 falhas, 4,6 s, sem rede. O número na seção Desenvolvimento é o que a suíte tinha quando aquela linha foi escrita; esta reprodução é a saída atual.*
 
 ## Licença
 

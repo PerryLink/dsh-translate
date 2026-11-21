@@ -1,3 +1,12 @@
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-hero-zh-dark.webp">
+  <img src="docs/assets/dsh-translate-hero-zh-light.webp" width="100%" alt="dsh-translate：DeepSeek Harness 的整页翻译插件——浏览器把代码、路径、命令、URL 与产品名遮成占位符，宿主用你当前会话的模型路由翻译，丢了占位符的段落保留原文；右侧是 Config 默认值（maxSegments 40、maxChars 6000、timeoutMs 60000）">
+</picture>
+
+</div>
+
 # dsh-translate
 
 > 宿主兼容性：DeepSeek Harness `dsh-v0.2.2-rc.4`（2026-11-18 核验）。
@@ -13,7 +22,7 @@ DeepSeek Harness 的整页翻译插件：浏览器半边遍历当前页面上的
 > 要保留原功能请安装 `dsh-param-repair` 并移除本行；旧配置键（`repair.*`、`rosettaDataPath`）在新插件里会被忽略，
 > 不会导致 profile 加载失败。
 
-[English](README.en.md) · [简体中文](README.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
+[English](README.en.md) · [简体中文](README.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 ## 翻什么，不翻什么
 
@@ -26,6 +35,13 @@ DeepSeek Harness 的整页翻译插件：浏览器半边遍历当前页面上的
 | —— | 词表里的产品名：DeepSeek Harness、Cordis、npm、GitHub、Gitee、GitCode、Phocinae、PerryLink 等 |
 
 判定规则：一个文本节点里如果**没有任何可翻译的散文**（例如整段都是路径或代码），直接跳过；如果模型丢掉、改了或新增了占位符，这一段就放弃翻译、保留原文，而不是把半个占位符写进页面。
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-translate-flow-v5-light.svg" width="100%" alt="dsh-translate 结构图：浏览器在 DOM 里遮住受保护片段，宿主按批用你自己的模型路由翻译，浏览器再把占位符还原到原来的文本节点；输出是译文、失败下标与路由状态">
+</picture>
+
+*结构：遮罩 → 翻译 → 还原；`translatePage/translate` 返回 `translations[]`、`failed[]` 以及实际使用的 provider 与 model，`status` 只报告路由是否可用。图内只出现真实的方法名、字段名与配置名，五语共用同一张结构图。*
 
 ## 安装
 
@@ -102,6 +118,10 @@ pnpm run lint
 - `lib/wire.mjs` — 两端共享的调用描述符
 - `typert.host.mjs` — 宿主 Typert 清单
 - `client/index.js` — 手写客户端包：DOM 遍历、遮罩、缓存、浮动按钮
+
+![dsh-translate 测试套件：真实运行 pnpm test——32 个用例全部通过、0 失败，用时 4.6 秒](docs/assets/dsh-translate-demo.gif)
+
+*动图是 2026-11-21 在本检出中真实运行的 `pnpm test`，用 Node 自带的 TAP reporter 回放：32 个用例、0 失败、4.6 秒，不联网。上面「开发」一节里的用例数是当时写下的；这段回放是当前的输出。*
 
 ## License
 

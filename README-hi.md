@@ -1,3 +1,12 @@
+<div align="center">
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-hero-en-dark.webp">
+  <img src="docs/assets/dsh-translate-hero-en-light.webp" width="100%" alt="dsh-translate: DeepSeek Harness के लिए पूरे पेज का अनुवादक — ब्राउज़र कोड, पथ, कमांड, URL और उत्पाद नामों को placeholder में छिपाता है, host आपके ही सेशन के मॉडल रूट से अनुवाद करता है, और खोया placeholder मूल segment बनाए रखता है; दाईं ओर Config के डिफ़ॉल्ट (maxSegments 40, maxChars 6000, timeoutMs 60000)">
+</picture>
+
+</div>
+
 # dsh-translate
 
 > होस्ट संगतता: DeepSeek Harness `dsh-v0.2.2-rc.4` (2026-11-18 को सत्यापित)।
@@ -14,7 +23,7 @@ DeepSeek Harness के लिए एक एंड-टू-एंड अनुव
 > 0.2.x से अपग्रेड किया है और वह व्यवहार चाहिए, तो `dsh-param-repair` इंस्टॉल करें और इस पंक्ति को हटाएँ; पुरानी कॉन्फ़िग कुंजियाँ
 > (`repair.*`, `rosettaDataPath`) नए प्लगइन द्वारा अनदेखी की जाती हैं और प्रोफ़ाइल को विफल नहीं करतीं।
 
-[English](README.en.md) · [简体中文](README.md) · [Español](README.es.md) · [Português](README.pt.md) · [हिन्दी](README.hi.md)
+[English](README.en.md) · [简体中文](README.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
 ## क्या अनुवादित होता है
 
@@ -27,6 +36,13 @@ DeepSeek Harness के लिए एक एंड-टू-एंड अनुव
 | — | उत्पाद नाम: DeepSeek Harness, Cordis, npm, GitHub, Gitee, GitCode, Phocinae, PerryLink, … |
 
 जिस टेक्स्ट नोड में कोई गद्य नहीं बचता (उदाहरण के लिए कोई पथ या कोड स्पैन), उसे छोड़ दिया जाता है। यदि मॉडल कोई प्लेसहोल्डर खो देता है, उसे फिर से क्रमांकित करता है या गढ़ लेता है, तो वह खंड अपना मूल टेक्स्ट रखता है, बजाय पृष्ठ में आधा-मास्क किया गया स्ट्रिंग लिखने के।
+
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="docs/assets/dsh-translate-flow-v5-dark.svg">
+  <img src="docs/assets/dsh-translate-flow-v5-light.svg" width="100%" alt="dsh-translate संरचना: ब्राउज़र DOM में संरक्षित spans को mask करता है, host आपके ही मॉडल रूट से batches में अनुवाद करता है, और ब्राउज़र placeholders को उन्हीं text nodes में बहाल करता है; आउटपुट हैं translations, failed indexes और route का status">
+</picture>
+
+*संरचना: mask → translate → restore; `translatePage/translate` `translations[]`, `failed[]` और वास्तव में इस्तेमाल किया गया provider व model लौटाता है, जबकि `status` केवल बताता है कि route हल हो सकता है या नहीं। चित्र के लेबल असली method, field और config नाम हैं, इसलिए एक ही चित्र पाँचों भाषाओं के लिए काम करता है।*
 
 ## इंस्टॉल
 
@@ -103,6 +119,10 @@ pnpm run lint
 - `lib/wire.mjs` — दोनों फलकों द्वारा साझा किए गए इनवोकेशन डिस्क्रिप्टर
 - `typert.host.mjs` — होस्ट Typert मैनिफ़ेस्ट
 - `client/index.js` — हस्तलिखित क्लाइंट बंडल: DOM वॉक, मास्किंग, कैश, फ़्लोटिंग नियंत्रण
+
+![dsh-translate टेस्ट सूट: pnpm test का असली रन — 32 टेस्ट पास, 0 फेल, 4.6 सेकंड में](docs/assets/dsh-translate-demo.gif)
+
+*एनिमेटेड: 2026-11-21 को इस चेकआउट में `pnpm test` का असली रन, Node के TAP reporter से रीप्ले — 32 टेस्ट, 0 फेल, 4.6 सेकंड, नेटवर्क नहीं। ऊपर Development अनुभाग में लिखी संख्या उस समय की सूट है; यह रीप्ले मौजूदा आउटपुट है।*
 
 ## लाइसेंस
 
