@@ -43,6 +43,7 @@
     "LICENSE",
     "README-es.md",
     "README-pt.md",
+    "docs/assets/*",
     "README-hi.md"
   ],
   "dsh": {
