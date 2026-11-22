@@ -1,6 +1,6 @@
 {
   "name": "dsh-translate",
-  "version": "0.3.7",
+  "version": "0.3.8",
   "description": "Full-page translation for DeepSeek Harness: translate the rendered web GUI into your language with your own model route, preserving code, paths, commands, identifiers, numbers and product names. Display-only; the session log is never touched.",
   "keywords": [
     "dsh",
@@ -28,7 +28,8 @@
       "default": "./client/index.js"
     },
     "./cordis.patch.yml": "./cordis.patch.yml",
-    "./package.json": "./package.json"
+    "./package.json": "./package.json",
+    "./locale/*.json": "./locale/*.json"
   },
   "files": [
     "index.mjs",
@@ -44,7 +45,9 @@
     "README-es.md",
     "README-pt.md",
     "docs/assets/*",
-    "README-hi.md"
+    "README-hi.md",
+    "locale/*.json",
+    "icon.svg"
   ],
   "dsh": {
     "manifestVersion": 1,
@@ -95,5 +98,6 @@
   "homepage": "https://github.com/PerryLink/dsh-translate#readme",
   "bugs": {
     "url": "https://github.com/PerryLink/dsh-translate/issues"
-  }
+  },
+  "icon": "icon.svg"
 }

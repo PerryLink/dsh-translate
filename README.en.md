@@ -9,6 +9,8 @@
 
 # dsh-translate
 
+Current version `0.3.8`.
+
 **Translate the whole interface into your language — with your own DSH model route, and without touching code, paths, commands or product names.**
 
 An end-to-end translator for DeepSeek Harness. The browser half walks the page's text, masks every span that must stay verbatim (code blocks and inline code, file paths, shell commands, URLs, identifiers, versions, hashes, numbers, product names) into, `⟦n⟧` placeholders, and sends the remaining prose to the host half. The host translates with **the model route your current session already uses**, the browser restores the placeholders and writes the result back into the same text nodes. Originals stay in memory; one click on **Original** restores the page.
