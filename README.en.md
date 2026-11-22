@@ -9,11 +9,9 @@
 
 # dsh-translate
 
-> Host compatibility: DeepSeek Harness `dsh-v0.2.2-rc.4` (verified 2026-11-18).
-
 **Translate the whole interface into your language — with your own DSH model route, and without touching code, paths, commands or product names.**
 
-An end-to-end translator for DeepSeek Harness. The browser half walks the page's text, masks every span that must stay verbatim (code blocks and inline code, file paths, shell commands, URLs, identifiers, versions, hashes, numbers, product names) into `dsh-v0.2.2-rc.4`（2026-11-18）；`⟦n⟧` placeholders, and sends the remaining prose to the host half. The host translates with **the model route your current session already uses**, the browser restores the placeholders and writes the result back into the same text nodes. Originals stay in memory; one click on **Original** restores the page.
+An end-to-end translator for DeepSeek Harness. The browser half walks the page's text, masks every span that must stay verbatim (code blocks and inline code, file paths, shell commands, URLs, identifiers, versions, hashes, numbers, product names) into, `⟦n⟧` placeholders, and sends the remaining prose to the host half. The host translates with **the model route your current session already uses**, the browser restores the placeholders and writes the result back into the same text nodes. Originals stay in memory; one click on **Original** restores the page.
 
 Display-only by design: the session log, the workspace and the DSH config are never written. The transcript keeps exactly what the model said.
 
@@ -22,6 +20,8 @@ Display-only by design: the session log, the workspace and the DSH config are ne
 > [`dsh-param-repair`](https://github.com/PerryLink/dsh-param-repair) (1.0.0). If you upgraded from
 > 0.2.x and need that behaviour, install `dsh-param-repair` and remove this row; old config keys
 > (`repair.*`, `rosettaDataPath`) are ignored by the new plugin and do not fail the profile.
+
+Last verified on DeepSeek Harness `dsh-v0.2.3-alpha.1` (2026-11-22).
 
 [English](README.en.md) · [简体中文](README.md) · [Español](README-es.md) · [Português](README-pt.md) · [हिन्दी](README-hi.md)
 
